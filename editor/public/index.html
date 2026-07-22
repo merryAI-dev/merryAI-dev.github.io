@@ -74,7 +74,7 @@
     <dialog id="settingsDialog" class="sheet">
       <form method="dialog">
         <header><h2>글 설정</h2><button value="cancel" aria-label="닫기">×</button></header>
-        <label>영문 주소<input id="slug" pattern="[a-z0-9-]{3,80}" placeholder="note-20260722"></label>
+        <label>영문 주소<input id="slug" pattern="[a-z0-9\-]{3,80}" placeholder="note-20260722"></label>
         <label>시리즈<input id="series" value="Building the Ledger" maxlength="80"></label>
         <label>시리즈 번호<input id="seriesNo" type="number" min="1" value="1"></label>
         <label>태그<input id="tags" placeholder="MYSCube, Backend" maxlength="120"></label>
