@@ -214,7 +214,7 @@
     elements.posts.close();
     setSaveState("불러오는 중…");
     try {
-      const result = await api(`/api/posts?path=${encodeURIComponent(path)}`);
+      const result = await api(`/api/posts?post=${encodeURIComponent(path)}`);
       const body = window.marked.parse(result.post.bodyMarkdown || "", { gfm: true, breaks: false });
       applyDocument({ ...result.post, body }, { server: true });
       history.replaceState(null, "", `${location.pathname}?path=${encodeURIComponent(path)}`);

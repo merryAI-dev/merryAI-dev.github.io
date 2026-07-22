@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { createHmac } from "node:crypto";
 import { parseFrontmatter, sanitizePostHtml, serializePost, validateImageData, validatePostPath } from "../src/worker.js";
 import worker from "../src/worker.js";
 
@@ -73,4 +74,14 @@ test("runtime configuration ignores accidental surrounding whitespace", async ()
   });
   const location = new URL(response.headers.get("location"));
   assert.equal(location.searchParams.get("client_id"), "client-id-without-newline");
+});
+
+test("Vercel rewrite path does not masquerade as a post path", async () => {
+  const secret = "test-only";
+  const payload = Buffer.from(JSON.stringify({ login: "writer", exp: Math.floor(Date.now() / 1000) + 60 })).toString("base64url");
+  const signature = createHmac("sha256", secret).update(payload).digest("base64url");
+  const response = await worker.fetch(new Request("https://editor.example/api/posts?path=posts", {
+    headers: { Cookie: `mysc_editor_session=${payload}.${signature}` }
+  }), { SESSION_SECRET: secret, ALLOWED_LOGINS: "writer" });
+  assert.equal(response.status, 503);
 });

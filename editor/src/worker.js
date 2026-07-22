@@ -444,7 +444,7 @@ async function route(request, env) {
   }
   if (url.pathname.startsWith("/api/")) await requireSession(request, env);
   if (url.pathname === "/api/posts" && request.method === "GET") {
-    const path = url.searchParams.get("path");
+    const path = url.searchParams.get("post");
     if (!path) return json({ posts: await listPosts(env) });
     validatePostPath(path);
     const content = await getContent(env, path);
