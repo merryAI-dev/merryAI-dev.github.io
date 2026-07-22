@@ -5,11 +5,17 @@ MYSC AX팀의 기술 블로그입니다. GitHub Pages와 Jekyll로 발행하고 
 ## 글 작성
 
 1. `https://merryai-dev.github.io/admin/`에 접속합니다.
-2. Pages CMS에서 `merryAI-dev.github.io` 저장소를 선택합니다.
-3. **기술 블로그 → 새 항목**에서 글을 작성합니다.
-4. 새 글은 기본적으로 초안입니다. 검토가 끝나면 **공개 발행**을 켭니다.
+2. **새 글 시작**을 누르고 GitHub로 로그인합니다.
+3. 제목·요약·태그와 본문을 작성하고 이미지를 끌어다 놓습니다.
+4. 새 글은 기본적으로 비공개 초안입니다. 검토가 끝나면 **공개 발행**을 켜고 저장합니다.
+5. 저장한 변경은 GitHub 이력에 남고 GitHub Pages가 자동 배포합니다.
 
 Pages CMS GitHub App은 이 저장소에만 설치하고 최소 권한으로 운영합니다. 토큰이나 API 키를 저장소에 추가하지 않습니다.
+
+직접 편집기 주소는 다음과 같습니다.
+
+- 새 글: `https://app.pagescms.org/merryAI-dev/merryAI-dev.github.io/main/collection/posts/new`
+- 글 관리: `https://app.pagescms.org/merryAI-dev/merryAI-dev.github.io/main/collection/posts`
 
 ## 로컬 확인
 

@@ -5,6 +5,25 @@ media:
     output: /assets/images/posts
     rename: safe
     extensions: [png, jpg, jpeg, webp, gif]
+    commit:
+      identity: user
+      templates:
+        create: "media(blog): add {filename}"
+        update: "media(blog): update {filename}"
+        delete: "media(blog): remove {filename}"
+        rename: "media(blog): rename {oldFilename} to {newFilename}"
+
+settings:
+  hide: true
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      create: "content(blog): add {filename}"
+      update: "content(blog): update {filename}"
+      delete: "content(blog): remove {filename}"
+      rename: "content(blog): rename {oldFilename} to {newFilename}"
 
 content:
   - name: posts
@@ -14,68 +33,124 @@ content:
     format: yaml-frontmatter
     filename:
       template: "{year}-{month}-{day}-{title}.md"
-      field: create
+      field: false
     view:
+      fields: [title, published, date, author, series]
       primary: title
-      sort: date
-      order: desc
+      sort: [date, title, series_no, published]
       search: [title, description, series, tags]
+      default:
+        sort: date
+        order: desc
     operations:
       create: true
-      rename: true
+      rename: false
       delete: false
     fields:
       - name: title
         label: 제목
         type: string
         required: true
+        description: 독자가 문제와 선택을 한눈에 이해할 수 있는 제목을 적어주세요.
+        options:
+          minlength: 5
+          maxlength: 80
       - name: description
         label: 한 줄 요약
         type: text
         required: true
+        description: 글 목록과 검색 결과에 표시됩니다.
+        options:
+          minlength: 20
+          maxlength: 180
+      - name: published
+        label: 공개 발행
+        type: boolean
+        default: false
+        description: 작성 중에는 끄고, 검토가 끝난 뒤에만 켜주세요.
       - name: author
         label: 작성자
         type: string
         default: MYSC AX팀
         required: true
+        options:
+          maxlength: 40
       - name: date
         label: 발행일
         type: date
         required: true
+        description: 새 글에는 오늘 날짜가 자동으로 입력됩니다.
+        options:
+          format: yyyy-MM-dd
       - name: series
         label: 시리즈
         type: string
         default: Building the Ledger
+        required: true
+        options:
+          maxlength: 60
       - name: series_no
         label: 시리즈 번호
         type: number
         default: 1
+        required: true
+        description: 글 목록과 본문 왼쪽 여백에 표시되는 순서입니다.
+        options:
+          min: 1
+          max: 99
       - name: tags
         label: 태그
-        type: string
-        list: true
+        type: select
+        required: true
+        description: 글의 핵심 기술과 주제를 최대 5개 선택하세요.
+        options:
+          multiple: true
+          min: 1
+          max: 5
+          values:
+            - MYSCube
+            - Backend
+            - Architecture
+            - Google Sheets
+            - Spreadsheet Migration
+            - Firestore
+            - BFF
+            - JVM
+            - Spring
+            - Settlement
+            - Closing
+            - Data Migration
       - name: reading_time
         label: 예상 읽기 시간(분)
         type: number
+        default: 8
+        required: true
+        options:
+          min: 1
+          max: 60
       - name: card_image
         label: 목록 이미지
         type: image
         required: false
+        description: 홈의 글 카드에 표시할 대표 이미지를 선택하거나 업로드하세요.
         options:
           media: post_images
+          extensions: [png, jpg, jpeg, webp, gif]
+          rename: safe
       - name: next_title
         label: 다음 글 예고
         type: string
         required: false
-      - name: published
-        label: 공개 발행
-        type: boolean
-        default: false
+        options:
+          maxlength: 100
       - name: body
         label: 본문
         type: rich-text
         required: true
+        description: 툴바로 제목, 목록, 링크, 코드, 이미지를 넣을 수 있습니다. 이미지는 본문에 끌어다 놓아도 됩니다.
         options:
           format: markdown
           media: post_images
+          extensions: [png, jpg, jpeg, webp, gif]
+          rename: safe
           switcher: true
