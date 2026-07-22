@@ -1,0 +1,81 @@
+media:
+  - name: post_images
+    label: 게시물 이미지
+    input: assets/images/posts
+    output: /assets/images/posts
+    rename: safe
+    extensions: [png, jpg, jpeg, webp, gif]
+
+content:
+  - name: posts
+    label: 기술 블로그
+    type: collection
+    path: _posts
+    format: yaml-frontmatter
+    filename:
+      template: "{year}-{month}-{day}-{title}.md"
+      field: create
+    view:
+      primary: title
+      sort: date
+      order: desc
+      search: [title, description, series, tags]
+    operations:
+      create: true
+      rename: true
+      delete: false
+    fields:
+      - name: title
+        label: 제목
+        type: string
+        required: true
+      - name: description
+        label: 한 줄 요약
+        type: text
+        required: true
+      - name: author
+        label: 작성자
+        type: string
+        default: MYSC AX팀
+        required: true
+      - name: date
+        label: 발행일
+        type: date
+        required: true
+      - name: series
+        label: 시리즈
+        type: string
+        default: Building the Ledger
+      - name: series_no
+        label: 시리즈 번호
+        type: number
+        default: 1
+      - name: tags
+        label: 태그
+        type: string
+        list: true
+      - name: reading_time
+        label: 예상 읽기 시간(분)
+        type: number
+      - name: card_image
+        label: 목록 이미지
+        type: image
+        required: false
+        options:
+          media: post_images
+      - name: next_title
+        label: 다음 글 예고
+        type: string
+        required: false
+      - name: published
+        label: 공개 발행
+        type: boolean
+        default: false
+      - name: body
+        label: 본문
+        type: rich-text
+        required: true
+        options:
+          format: markdown
+          media: post_images
+          switcher: true

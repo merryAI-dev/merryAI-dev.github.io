@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="title desc">
+  <title id="title">Excalidraw 스타일의 baseline hash 충돌 처리</title>
+  <desc id="desc">미리보기 이후 시트가 변경되면 새 해시와 기존 해시를 비교해 409 충돌로 중단하는 손그림 흐름</desc>
+  <defs>
+    <filter id="rough" x="-4%" y="-4%" width="108%" height="108%"><feTurbulence type="fractalNoise" baseFrequency="0.013" numOctaves="2" seed="23" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4"/></filter>
+    <pattern id="hatch" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(21)"><line x1="0" y1="0" x2="0" y2="11" stroke="#e03131" stroke-width="2" opacity=".38"/></pattern>
+    <style>text{font-family:'Comic Sans MS','Nanum Gothic','Apple SD Gothic Neo',sans-serif;fill:#1f2328}.title{font-size:42px;font-weight:700}.sub{font-size:20px;fill:#667085}.lane{font-size:23px;font-weight:700}.label{font-size:20px;font-weight:700}.small{font-size:17px}.code{font:700 20px ui-monospace,SFMono-Regular,Menlo,monospace}.sketch{fill:none;stroke:#1f2328;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:url(#rough)}.arrow{fill:none;stroke:#1f2328;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;filter:url(#rough)}</style>
+  </defs>
+  <rect width="1600" height="860" fill="#fffefa"/>
+  <text x="70" y="72" class="title">미리보기 뒤 시트가 바뀌면 덮어쓰지 않는다</text><text x="72" y="108" class="sub">대상 셀의 baseline hash를 optimistic concurrency token으로 사용</text>
+
+  <text x="78" y="242" class="lane" fill="#2f9e44">사용자 A</text><text x="78" y="418" class="lane" fill="#1971c2">Google Sheet</text><text x="78" y="594" class="lane" fill="#7950f2">MYSCube BFF</text>
+  <g class="sketch" stroke-width="2" opacity=".45"><path d="M244 236 C540 231 1111 238 1515 235" stroke="#2f9e44"/><path d="M244 412 C620 406 1110 415 1515 411" stroke="#1971c2"/><path d="M244 588 C598 583 1110 592 1515 587" stroke="#7950f2"/></g>
+
+  <path d="M278 177 L522 182 L518 300 L274 295 Z" fill="#ebfbee" stroke="#2f9e44" stroke-width="3" filter="url(#rough)"/><text x="398" y="224" text-anchor="middle" class="label" fill="#2f7d45">Writeback Preview</text><text x="398" y="260" text-anchor="middle" class="small">현재 셀 검토</text>
+  <path d="M398 301 C398 324 400 343 399 366 M388 353 L399 369 L410 353" class="arrow"/>
+  <path d="M278 363 L523 368 L518 464 L275 459 Z" fill="#e7f5ff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/><text x="398" y="405" text-anchor="middle" class="label" fill="#1864ab">셀 집합 읽기</text><text x="398" y="440" text-anchor="middle" class="code" fill="#1864ab">hash = h1</text>
+  <path d="M398 465 C398 489 400 510 399 537 M388 522 L399 539 L410 522" class="arrow"/>
+  <path d="M278 535 L523 540 L518 636 L275 631 Z" fill="#f3f0ff" stroke="#7950f2" stroke-width="3" filter="url(#rough)"/><text x="398" y="577" text-anchor="middle" class="label" fill="#6741d9">Baseline 생성</text><text x="398" y="612" text-anchor="middle" class="code" fill="#6741d9">SHA-256(h1)</text>
+
+  <path d="M539 412 C586 408 629 413 681 412 M655 393 L684 412 L656 432" class="arrow"/>
+  <path d="M704 352 L951 357 L947 472 L701 467 Z" fill="#fff3bf" stroke="#f08c00" stroke-width="3" filter="url(#rough)"/><text x="826" y="397" text-anchor="middle" class="label" fill="#d9480f">다른 사용자가 수정</text><text x="826" y="435" text-anchor="middle" class="small">시트 값이 변경됨</text>
+  <path d="M826 473 C826 494 828 510 826 537 M815 522 L826 540 L837 522" class="arrow"/>
+  <path d="M703 535 L951 540 L947 636 L700 631 Z" fill="#f3f0ff" stroke="#7950f2" stroke-width="3" filter="url(#rough)"/><text x="825" y="577" text-anchor="middle" class="label" fill="#6741d9">Apply 요청</text><text x="825" y="612" text-anchor="middle" class="code" fill="#6741d9">requested = h1</text>
+  <path d="M967 588 C1000 586 1025 589 1053 588 M1028 569 L1056 588 L1029 608" class="arrow"/>
+  <path d="M1075 526 L1322 531 L1318 647 L1072 642 Z" fill="#e7f5ff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/><text x="1197" y="570" text-anchor="middle" class="label" fill="#1864ab">캐시 없이 새로 읽기</text><text x="1197" y="609" text-anchor="middle" class="code" fill="#1864ab">current = h2</text>
+
+  <path d="M1322 588 C1360 589 1380 560 1381 474" fill="none" stroke="#e03131" stroke-width="3.2" filter="url(#rough)"/><path d="M1370 490 L1381 470 L1391 491" fill="none" stroke="#e03131" stroke-width="3.2" filter="url(#rough)"/>
+  <path d="M1326 321 L1547 326 L1543 472 L1322 467 Z" fill="#fff5f5" stroke="#e03131" stroke-width="3" filter="url(#rough)"/><path d="M1326 321 L1547 326 L1543 472 L1322 467 Z" fill="url(#hatch)"/><text x="1435" y="368" text-anchor="middle" class="code" fill="#c92a2a">h1 ≠ h2</text><text x="1435" y="410" text-anchor="middle" class="label" fill="#c92a2a">409 CONFLICT</text><text x="1435" y="443" text-anchor="middle" class="small">덮어쓰기 중단</text>
+  <path d="M1197 649 C1197 672 1199 690 1198 716 M1187 701 L1198 719 L1209 701" fill="none" stroke="#2f9e44" stroke-width="3.2" filter="url(#rough)"/>
+  <path d="M1035 722 L1362 727 L1358 812 L1032 807 Z" fill="#ebfbee" stroke="#2f9e44" stroke-width="3" filter="url(#rough)"/><text x="1197" y="760" text-anchor="middle" class="code" fill="#2f7d45">h1 = h2</text><text x="1197" y="792" text-anchor="middle" class="small">Projection 셀만 batch update</text>
+
+  <path d="M276 731 L880 726 L884 811 L272 806 Z" fill="#fffefa" stroke="#1f2328" stroke-width="2.5" filter="url(#rough)"/><path d="M420 784 C530 779 687 782 827 784" fill="none" stroke="#ffd43b" stroke-width="16" opacity=".5" stroke-linecap="round" filter="url(#rough)"/><text x="578" y="759" text-anchor="middle" class="label">양방향 동기화의 핵심은 API가 아니라</text><text x="578" y="791" text-anchor="middle" class="label">“중간에 바뀌었을 때 어떻게 할 것인가”</text>
+</svg>

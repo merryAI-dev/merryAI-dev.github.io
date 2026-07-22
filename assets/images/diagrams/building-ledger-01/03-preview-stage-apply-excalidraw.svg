@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Excalidraw 스타일의 Preview Stage Apply 흐름</title>
+  <desc id="desc">사용자가 시트를 미리 보고 변경 후보를 검토한 뒤 원장에 적용하고 다시 읽어 검증하는 손그림 흐름</desc>
+  <defs>
+    <filter id="rough" x="-4%" y="-4%" width="108%" height="108%"><feTurbulence type="fractalNoise" baseFrequency="0.013" numOctaves="2" seed="19" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4"/></filter>
+    <pattern id="hatch" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(20)"><line x1="0" y1="0" x2="0" y2="11" stroke="#e03131" stroke-width="2" opacity=".4"/></pattern>
+    <style>text{font-family:'Comic Sans MS','Nanum Gothic','Apple SD Gothic Neo',sans-serif;fill:#1f2328}.title{font-size:42px;font-weight:700}.sub{font-size:20px;fill:#667085}.step{font-size:20px;font-weight:800;letter-spacing:1px}.label{font-size:20px;font-weight:700}.small{font-size:17px}.sketch{fill:none;stroke:#1f2328;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:url(#rough)}.arrow{fill:none;stroke:#1f2328;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;filter:url(#rough)}</style>
+  </defs>
+  <rect width="1600" height="900" fill="#fffefa"/>
+  <text x="70" y="72" class="title">시트 값을 바로 저장하지 않았다</text><text x="72" y="108" class="sub">Preview → Stage → Apply → Readback, 네 단계가 끝나야 반영 완료</text>
+
+  <g class="sketch"><circle cx="142" cy="305" r="39"/><path d="M88 420 C90 360 194 361 199 420"/></g><text x="143" y="470" text-anchor="middle" class="label">사용자</text><text x="143" y="500" text-anchor="middle" class="small">시트 링크 · 주차 범위</text>
+  <path d="M228 391 C260 388 286 390 320 391 M294 372 L322 391 L295 411" class="arrow"/>
+
+  <path d="M346 197 L596 202 L590 590 L340 584 Z" fill="#ebfbee" stroke="#2f9e44" stroke-width="3" filter="url(#rough)"/><path d="M351 202 L590 208 L584 584 L346 578 Z" class="sketch" stroke="#2f9e44" opacity=".55"/><text x="382" y="247" class="step" fill="#2f7d45">01 PREVIEW</text>
+  <path d="M383 279 L558 284 L554 360 L379 355 Z" fill="#fffefa" stroke="#2f9e44" stroke-width="3" filter="url(#rough)"/><text x="469" y="328" text-anchor="middle" class="label">시트 구조 분석</text><path d="M469 364 C470 378 468 389 469 401 M458 389 L469 404 L480 389" class="arrow"/>
+  <path d="M381 410 L557 406 L560 483 L383 487 Z" fill="#fffefa" stroke="#2f9e44" stroke-width="3" filter="url(#rough)"/><text x="470" y="457" text-anchor="middle" class="label">현재 값 비교</text><text x="470" y="530" text-anchor="middle" class="small">원장 수정 없음</text><text x="470" y="557" text-anchor="middle" class="small">template 불일치 시 거절</text>
+  <path d="M611 391 C640 388 657 391 681 391 M656 372 L683 391 L656 411" class="arrow"/>
+
+  <path d="M706 198 L956 193 L960 587 L711 592 Z" fill="#e7f5ff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/><path d="M712 204 L950 199 L954 581 L717 586 Z" class="sketch" stroke="#1971c2" opacity=".55"/><text x="742" y="247" class="step" fill="#1864ab">02 STAGE</text>
+  <path d="M744 280 L916 277 L920 357 L747 361 Z" fill="#d0ebff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/><text x="830" y="328" text-anchor="middle" class="label">차이만 후보화</text><path d="M830 364 C831 380 830 388 831 402 M820 389 L831 405 L842 389" class="arrow"/>
+  <path d="M744 410 L919 406 L916 484 L746 488 Z" fill="#f3f0ff" stroke="#7950f2" stroke-width="3" filter="url(#rough)"/><text x="830" y="457" text-anchor="middle" class="label" fill="#6741d9">변경 전후 기록</text><text x="830" y="530" text-anchor="middle" class="small">셀 주소 · actor · lineId</text><text x="830" y="557" text-anchor="middle" class="small">검토 대기 상태로 저장</text>
+  <path d="M831 592 C831 635 900 648 1029 648 M1004 629 L1033 648 L1004 667" fill="none" stroke="#e03131" stroke-width="3.2" filter="url(#rough)"/>
+  <path d="M1047 607 L1381 613 L1377 727 L1043 721 Z" fill="#fff5f5" stroke="#e03131" stroke-width="3" filter="url(#rough)"/><path d="M1047 607 L1381 613 L1377 727 L1043 721 Z" fill="url(#hatch)"/><text x="1212" y="654" text-anchor="middle" class="label" fill="#c92a2a">closed_week_change</text><text x="1212" y="694" text-anchor="middle" class="small">마감 주차는 명시적 선택 전까지 제외</text>
+
+  <path d="M974 391 C1002 389 1021 390 1044 391 M1019 372 L1046 391 L1020 411" class="arrow"/>
+  <path d="M1066 198 L1318 203 L1312 590 L1062 584 Z" fill="#f3f0ff" stroke="#7950f2" stroke-width="3" filter="url(#rough)"/><path d="M1072 204 L1312 209 L1306 584 L1068 578 Z" class="sketch" stroke="#7950f2" opacity=".55"/><text x="1102" y="247" class="step" fill="#6741d9">03 APPLY</text>
+  <path d="M1103 279 L1279 284 L1275 360 L1100 355 Z" fill="#fffefa" stroke="#7950f2" stroke-width="3" filter="url(#rough)"/><text x="1190" y="328" text-anchor="middle" class="label">검토 후보 선택</text><path d="M1190 364 C1190 379 1189 389 1190 402 M1179 389 L1190 405 L1201 389" class="arrow"/>
+  <path d="M1102 410 L1278 406 L1281 483 L1104 487 Z" fill="#fffefa" stroke="#7950f2" stroke-width="3" filter="url(#rough)"/><text x="1190" y="457" text-anchor="middle" class="label">Firestore 반영</text><text x="1190" y="530" text-anchor="middle" class="small">금액 변경 event 기록</text><text x="1190" y="557" text-anchor="middle" class="small">runId로 실행 추적</text>
+  <path d="M1334 391 C1355 389 1374 390 1392 391 M1368 372 L1395 391 L1369 411" class="arrow"/>
+
+  <path d="M1418 245 L1561 249 L1556 532 L1412 527 Z" fill="#e7f5ff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/><ellipse cx="1487" cy="309" rx="45" ry="16" fill="#a5d8ff" stroke="#1971c2" stroke-width="2.5" filter="url(#rough)"/><path d="M1442 309 L1442 354 C1458 371 1517 371 1532 354 L1532 309" fill="#d0ebff" stroke="#1971c2" stroke-width="2.5" filter="url(#rough)"/><text x="1486" y="415" text-anchor="middle" class="label" fill="#1864ab">READBACK</text><text x="1486" y="452" text-anchor="middle" class="small">다시 읽기</text><text x="1486" y="481" text-anchor="middle" class="small">line별 비교</text><path d="M1446 494 L1530 496 L1528 523 L1444 521 Z" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2" filter="url(#rough)"/><text x="1487" y="516" text-anchor="middle" font-size="14">VERIFIED</text>
+
+  <path d="M300 795 C527 786 1033 791 1300 796" fill="none" stroke="#ffd43b" stroke-width="18" stroke-linecap="round" opacity=".42" filter="url(#rough)"/><text x="800" y="829" text-anchor="middle" class="label">HTTP 200이 아니라, 저장소를 다시 읽은 값이 같아야 한 사이클이 끝난다</text>
+</svg>

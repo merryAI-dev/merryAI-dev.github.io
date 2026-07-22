@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="title desc">
+  <title id="title">Excalidraw 스타일의 semantic migration 구조</title>
+  <desc id="desc">Google Sheet의 사용자 입력, 수식, 사람 수정을 BFF가 canonical model로 변환해 Firestore에 저장하는 손그림 구조</desc>
+  <defs>
+    <filter id="rough" x="-4%" y="-4%" width="108%" height="108%"><feTurbulence type="fractalNoise" baseFrequency="0.013" numOctaves="2" seed="13" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.3"/></filter>
+    <pattern id="hatch" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(22)"><line x1="0" y1="0" x2="0" y2="11" stroke="#e67700" stroke-width="2" opacity="0.45"/></pattern>
+    <style>
+      text { font-family: 'Comic Sans MS','Nanum Gothic','Apple SD Gothic Neo',sans-serif; fill:#1f2328; }
+      .title{font-size:42px;font-weight:700}.sub{font-size:20px;fill:#667085}.head{font-size:29px;font-weight:700}.label{font-size:21px;font-weight:700}.small{font-size:17px}.code{font:700 18px ui-monospace,SFMono-Regular,Menlo,monospace}.sketch{fill:none;stroke:#1f2328;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:url(#rough)}.arrow{fill:none;stroke:#1f2328;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;filter:url(#rough)}
+    </style>
+  </defs>
+  <rect width="1600" height="860" fill="#fffefa"/>
+  <text x="70" y="72" class="title">셀을 복사하지 않고, 업무 의미를 변환했다</text>
+  <text x="72" y="108" class="sub">물리적인 위치는 외부 포맷에 남기고, 내부에는 변하지 않는 도메인 키를 저장</text>
+
+  <path d="M55 178 L445 186 L438 709 L50 701 Z" fill="#ebfbee" stroke="#2f9e44" stroke-width="3" filter="url(#rough)"/>
+  <path d="M61 184 L439 192 L432 703 L56 695 Z" class="sketch" stroke="#2f9e44" opacity=".6"/>
+  <text x="247" y="233" text-anchor="middle" class="head" fill="#2f7d45">Google Sheet</text>
+  <text x="247" y="266" text-anchor="middle" class="small">사람에게 익숙한 입출력 채널</text>
+
+  <path d="M102 310 L396 314 L392 405 L106 401 Z" fill="#fffefa" stroke="#2f9e44" stroke-width="3" filter="url(#rough)"/>
+  <text x="138" y="350" class="label" fill="#2f7d45">사용자 입력</text><text x="138" y="381" class="small">거래일 · 금액 · 비목</text>
+  <path d="M104 431 L393 427 L397 523 L101 519 Z" fill="#fffefa" stroke="#2f9e44" stroke-width="3" filter="url(#rough)"/>
+  <text x="138" y="471" class="label" fill="#2f7d45">수식 계산</text><text x="138" y="502" class="small">잔액 · VAT · 주차 파생</text>
+  <path d="M103 548 L397 553 L392 664 L99 659 Z" fill="#fff3bf" stroke="#f08c00" stroke-width="3" filter="url(#rough)"/>
+  <path d="M103 548 L397 553 L392 664 L99 659 Z" fill="url(#hatch)"/>
+  <text x="138" y="588" class="label" fill="#d9480f">사람의 명시적 수정</text><text x="138" y="620" class="small">예외 · 취소 · 불인정 · 증빙 판단</text><text x="138" y="648" class="small">자동 계산보다 우선 보존</text>
+
+  <path d="M463 445 C495 441 523 448 550 446 M525 426 L552 446 L525 466" class="arrow"/>
+
+  <path d="M570 181 L1031 176 L1024 711 L576 706 Z" fill="#e7f5ff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/>
+  <path d="M577 187 L1024 182 L1017 705 L583 700 Z" class="sketch" stroke="#1971c2" opacity=".6"/>
+  <text x="800" y="233" text-anchor="middle" class="head" fill="#1864ab">Express BFF</text>
+  <text x="800" y="266" text-anchor="middle" class="small">외부 포맷과 내부 원장이 만나는 경계</text>
+
+  <path d="M625 310 L974 305 L978 390 L622 395 Z" fill="#d0ebff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/><text x="800" y="358" text-anchor="middle" class="label">Template analysis</text>
+  <path d="M800 397 C801 412 798 423 800 435 M789 422 L800 438 L811 422" class="arrow"/>
+  <path d="M623 444 L979 440 L975 526 L626 530 Z" fill="#d0ebff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/><text x="800" y="493" text-anchor="middle" class="label">Canonical mapping</text>
+  <path d="M800 532 C799 548 801 558 800 570 M789 558 L800 574 L811 558" class="arrow"/>
+  <path d="M624 579 L977 574 L980 666 L621 671 Z" fill="#f3f0ff" stroke="#7950f2" stroke-width="3" filter="url(#rough)"/><text x="800" y="620" text-anchor="middle" class="label" fill="#6741d9">Review policy</text><text x="800" y="650" text-anchor="middle" class="small">확정값 · 제안값 · 위험 후보 분리</text>
+
+  <path d="M1047 445 C1080 443 1105 446 1135 447 M1107 427 L1137 447 L1108 467" class="arrow"/>
+
+  <path d="M1156 180 L1545 187 L1538 708 L1151 700 Z" fill="#f8f9fa" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/>
+  <ellipse cx="1348" cy="255" rx="90" ry="28" fill="#a5d8ff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/>
+  <path d="M1258 255 L1258 310 C1280 345 1418 345 1438 310 L1438 255" fill="#d0ebff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/>
+  <text x="1348" y="385" text-anchor="middle" class="head" fill="#1864ab">Firestore</text>
+  <text x="1348" y="417" text-anchor="middle" class="small">cashflow_weeks canonical model</text>
+  <g fill="#fffefa" stroke="#1971c2" stroke-width="2.5" filter="url(#rough)"><path d="M1210 450 L1491 447 L1490 492 L1211 495 Z"/><path d="M1211 505 L1489 502 L1492 548 L1210 551 Z"/><path d="M1210 560 L1492 558 L1490 605 L1212 607 Z"/><path d="M1212 617 L1490 614 L1491 660 L1210 663 Z"/></g>
+  <text x="1350" y="481" text-anchor="middle" class="code">projectId</text><text x="1350" y="536" text-anchor="middle" class="code">yearMonth + weekNo</text><text x="1350" y="592" text-anchor="middle" class="code">projection | actual</text><text x="1350" y="648" text-anchor="middle" class="code">lineId</text>
+
+  <path d="M305 761 C535 754 1028 757 1292 762" fill="none" stroke="#ffd43b" stroke-width="18" stroke-linecap="round" opacity=".42" filter="url(#rough)"/>
+  <text x="800" y="797" text-anchor="middle" class="label">“N열 12행”은 바뀌어도 “2026-06 · 2주차 · actual · DIRECT_COST_OUT”은 남는다</text>
+</svg>

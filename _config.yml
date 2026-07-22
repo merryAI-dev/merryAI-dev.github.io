@@ -1,0 +1,24 @@
+title: MYSCube Engineering
+description: 숫자 뒤에 숨은 업무 규칙을 설계하는 MYSC AX팀의 기술 기록
+url: https://merryai-dev.github.io
+baseurl: ""
+lang: ko-KR
+timezone: Asia/Seoul
+permalink: /posts/:title/
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+exclude:
+  - AGENTS.md
+  - DESIGN.md
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'ko-KR' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#062e61">
+    <meta name="description" content="{{ page.description | default: site.description | strip_html | escape }}">
+    <title>{% if page.url == '/' %}{{ site.title }}{% elsif page.title %}{{ page.title }} · {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  </head>
+  <body class="layout-{{ page.layout | default: 'default' }}">
+    <a class="skip-link" href="#main-content">본문으로 바로가기</a>
+    <header class="site-header">
+      <a class="brand" href="{{ '/' | relative_url }}" aria-label="MYSCube Engineering 홈">
+        <img src="{{ '/assets/images/brand/mysc-logo.png' | relative_url }}" alt="MYSC Merry Year Social Company">
+        <span>Engineering Notes</span>
+      </a>
+      <nav class="site-nav" aria-label="주요 메뉴">
+        <a href="{{ '/' | relative_url }}">글 목록</a>
+        <a class="write-link" href="{{ '/admin/' | relative_url }}">글쓰기</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      {{ content }}
+    </main>
+
+    <footer class="site-footer">
+      <p>사람과 AI가 함께 더 잘 일하는 방법을 기록합니다.</p>
+      <p>© {{ 'now' | date: '%Y' }} MYSC AX Team</p>
+    </footer>
+  </body>
+</html>

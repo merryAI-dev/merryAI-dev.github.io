@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820" role="img" aria-labelledby="title desc">
+  <title id="title">Excalidraw 스타일의 workbook 기준선 생성 과정</title>
+  <desc id="desc">17개 시트의 원본 workbook에서 수식을 분석해 해시, 수식 인벤토리, 오류 목록을 만드는 손그림 다이어그램</desc>
+  <defs>
+    <filter id="rough" x="-4%" y="-4%" width="108%" height="108%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(18)">
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#9c36b5" stroke-width="2" opacity="0.55"/>
+    </pattern>
+    <style>
+      text { font-family: 'Comic Sans MS','Nanum Gothic','Apple SD Gothic Neo',sans-serif; fill: #1f2328; }
+      .title { font-size: 42px; font-weight: 700; }
+      .sub { font-size: 20px; fill: #667085; }
+      .head { font-size: 29px; font-weight: 700; }
+      .label { font-size: 21px; font-weight: 700; }
+      .small { font-size: 17px; }
+      .num { font-size: 38px; font-weight: 800; }
+      .sketch { fill: none; stroke: #1f2328; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; filter: url(#rough); }
+      .arrow { fill: none; stroke: #1f2328; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; filter: url(#rough); }
+    </style>
+  </defs>
+  <rect width="1600" height="820" fill="#fffefa"/>
+
+  <text x="70" y="72" class="title">원본 workbook을 먼저 고정했다</text>
+  <text x="72" y="108" class="sub">변하는 시트를 개발 기준으로 삼지 않고, 같은 파일을 다시 검증할 수 있게 만들었다</text>
+
+  <path d="M64 197 L431 190 L438 638 L69 646 Z" fill="#e8f7ee" stroke="#2f9e44" stroke-width="3" filter="url(#rough)"/>
+  <path d="M70 202 L425 196 L432 632 L75 640 Z" class="sketch" stroke="#2f9e44" opacity="0.65"/>
+  <path d="M123 267 L365 263 L370 441 L119 446 Z" fill="#fffefa" stroke="#2f9e44" stroke-width="3" filter="url(#rough)"/>
+  <path d="M144 294 L347 291 L348 328 L143 330 Z" fill="#b2f2bb" stroke="#2f9e44" stroke-width="2.5" filter="url(#rough)"/>
+  <g class="sketch" stroke="#74b985" stroke-width="1.8">
+    <path d="M143 348 L346 347 M143 385 L347 384 M143 421 L347 420"/>
+    <path d="M196 328 L196 431 M247 329 L248 432 M299 328 L300 430"/>
+  </g>
+  <text x="250" y="500" text-anchor="middle" class="head" fill="#2f7d45">기준 workbook</text>
+  <text x="250" y="548" text-anchor="middle" class="num" fill="#2f7d45">17개 시트</text>
+  <text x="250" y="584" text-anchor="middle" class="small">입력 · 수식 · 제출 탭이 연결된 운영 파일</text>
+
+  <path d="M449 419 C485 414 518 416 551 418 M526 399 L553 418 L526 438" class="arrow"/>
+
+  <path d="M579 166 L978 174 L970 670 L570 662 Z" fill="#e7f5ff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/>
+  <path d="M585 172 L971 180 L963 663 L577 656 Z" class="sketch" stroke="#1971c2" opacity="0.65"/>
+  <text x="775" y="226" text-anchor="middle" class="head" fill="#1864ab">Formula Inventory</text>
+
+  <path d="M628 271 L919 274 L916 349 L624 346 Z" fill="#d0ebff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/>
+  <text x="772" y="320" text-anchor="middle" class="label">모든 수식 추출</text>
+  <path d="M773 353 C775 370 774 381 774 396 M763 383 L774 398 L786 383" class="arrow"/>
+
+  <path d="M626 405 L921 401 L918 482 L628 486 Z" fill="#d0ebff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/>
+  <text x="773" y="454" text-anchor="middle" class="label">오류 원인 · 전파 분리</text>
+  <path d="M774 488 C774 503 776 515 775 527 M764 515 L775 530 L786 514" class="arrow"/>
+
+  <path d="M624 537 L923 532 L919 625 L627 630 Z" fill="#fff3bf" stroke="#f08c00" stroke-width="3" filter="url(#rough)"/>
+  <path d="M624 537 L923 532 L919 625 L627 630 Z" fill="url(#hatch)" opacity="0.7"/>
+  <text x="773" y="579" text-anchor="middle" class="label" fill="#862e9c">Semantic anomaly</text>
+  <text x="773" y="608" text-anchor="middle" class="small">계산은 되지만 의미가 의심되는 수식</text>
+
+  <path d="M990 418 C1025 415 1053 420 1090 418 M1064 399 L1092 418 L1065 438" class="arrow"/>
+
+  <path d="M1113 171 L1522 179 L1517 319 L1117 313 Z" fill="#e7f5ff" stroke="#1971c2" stroke-width="3" filter="url(#rough)"/>
+  <text x="1150" y="218" class="label" fill="#1864ab">Freeze Line</text>
+  <text x="1150" y="260" class="small">SHA-256로 같은 원본인지 검증</text>
+  <path d="M1388 201 L1488 205 L1484 275 L1385 271 Z" fill="#a5d8ff" stroke="#1971c2" stroke-width="2.5" filter="url(#rough)"/>
+  <text x="1437" y="247" text-anchor="middle" class="label">HASH</text>
+
+  <path d="M1117 341 L1521 336 L1517 486 L1112 492 Z" fill="#ebfbee" stroke="#2f9e44" stroke-width="3" filter="url(#rough)"/>
+  <text x="1150" y="388" class="label" fill="#2f7d45">Formula Inventory</text>
+  <text x="1150" y="435" class="small">셀 · 함수 · 결과 · 의존 관계</text>
+  <text x="1485" y="449" text-anchor="end" class="num" fill="#2f9e44">1,879</text>
+
+  <path d="M1111 512 L1517 508 L1521 663 L1117 658 Z" fill="#fff3bf" stroke="#f08c00" stroke-width="3" filter="url(#rough)"/>
+  <text x="1150" y="560" class="label" fill="#d9480f">Source Issue Ledger</text>
+  <text x="1150" y="609" class="small">직접 오류 11 · 전파 오류 62</text>
+  <text x="1485" y="620" text-anchor="end" class="num" fill="#f08c00">73</text>
+
+  <path d="M340 713 C530 706 1012 710 1260 714" fill="none" stroke="#ffd43b" stroke-width="18" stroke-linecap="round" opacity="0.45" filter="url(#rough)"/>
+  <text x="800" y="748" text-anchor="middle" class="label">“테스트가 통과한 파일”과 “같은 파일을 테스트한 것”을 구분한다</text>
+</svg>

@@ -1,0 +1,50 @@
+---
+layout: default
+title: MYSCube Engineering
+description: 숫자 뒤에 숨은 업무 규칙을 설계하는 MYSC AX팀의 기술 기록
+---
+<section class="home-hero">
+  <div class="hero-copy">
+    <p class="eyebrow">MYSC AX TEAM · ENGINEERING JOURNAL</p>
+    <h1>숫자 뒤에 숨은<br><em>업무를 설계합니다.</em></h1>
+    <p>시트 한 칸에서 시작해 정산과 결산의 원장까지. MYSCube를 만들며 발견한 문제와 선택의 근거를 기록합니다.</p>
+    {% assign first_post = site.posts | first %}
+    {% if first_post %}<a class="primary-link" href="{{ first_post.url | relative_url }}">첫 번째 기록 읽기 <span aria-hidden="true">→</span></a>{% endif %}
+  </div>
+  <aside class="hero-ledger" aria-label="Building the Ledger 시리즈 흐름">
+    <p>BUILDING THE LEDGER</p>
+    <ol>
+      <li class="active"><span>01</span> 시트 연동</li>
+      <li><span>02</span> 주정산</li>
+      <li><span>03</span> 월결산</li>
+    </ol>
+    <div class="ledger-flow" aria-hidden="true">SHEET → BFF → LEDGER</div>
+  </aside>
+</section>
+<section class="posts-section" aria-labelledby="posts-title">
+  <div class="section-heading">
+    <p>RECENT NOTES</p>
+    <h2 id="posts-title">최근 기술 기록</h2>
+  </div>
+  <div class="post-list">
+    {% for post in site.posts %}
+      <article class="post-card">
+        <a href="{{ post.url | relative_url }}" aria-label="{{ post.title }} 읽기">
+          <div class="post-card-index">{{ post.series_no | prepend: '0' | slice: -2, 2 }}</div>
+          <div class="post-card-copy">
+            <p>{{ post.series }}</p>
+            <h3>{{ post.title }}</h3>
+            <span>{{ post.description }}</span>
+            <div class="post-card-meta">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y.%m.%d' }}</time>
+              {% if post.reading_time %}<span>약 {{ post.reading_time }}분</span>{% endif %}
+            </div>
+          </div>
+          {% if post.card_image %}
+            <img src="{{ post.card_image | relative_url }}" alt="" loading="lazy">
+          {% endif %}
+        </a>
+      </article>
+    {% endfor %}
+  </div>
+</section>
