@@ -176,6 +176,7 @@
     state.cardImage = documentState.cardImage || "";
     state.nextTitle = documentState.nextTitle || "";
     state.nextUrl = documentState.nextUrl || "";
+    $("#saveButton").textContent = state.path ? "수정 저장" : "저장";
     resizeTextarea(elements.title);
     resizeTextarea(elements.description);
     updateCount();
@@ -285,6 +286,7 @@
         const button = document.createElement("button");
         button.type = "button";
         button.className = "post-row";
+        button.setAttribute("aria-label", `${post.title || "제목 없음"} 수정`);
         const text = document.createElement("span");
         const title = document.createElement("strong");
         title.textContent = post.title || "제목 없음";
@@ -293,7 +295,7 @@
         text.append(title, meta);
         const status = document.createElement("span");
         status.className = `status-dot${post.published ? " public" : ""}`;
-        status.textContent = post.published ? "공개" : "초안";
+        status.textContent = post.published ? "공개 · 수정" : "초안 · 수정";
         button.append(text, status);
         button.addEventListener("click", () => loadPost(post.path));
         return button;

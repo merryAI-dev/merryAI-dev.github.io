@@ -32,7 +32,7 @@
         </a>
         <p id="saveState" class="save-state" aria-live="polite">새 글</p>
         <nav aria-label="글 작업">
-          <button id="postsButton" class="text-button" type="button">내 글</button>
+          <button id="postsButton" class="text-button" type="button">글 수정</button>
           <button id="settingsButton" class="text-button" type="button">설정</button>
           <button id="previewButton" class="text-button" type="button">미리보기</button>
           <button id="saveButton" class="button" type="button">저장</button>
@@ -98,8 +98,8 @@
 
     <dialog id="postsDialog" class="sheet posts-sheet">
       <form method="dialog">
-        <header><h2>내 글</h2><button value="cancel" aria-label="닫기">×</button></header>
-        <button id="newPostButton" class="button primary" type="button">새 글</button>
+        <header><h2>수정할 글 선택</h2><button value="cancel" aria-label="닫기">×</button></header>
+        <button id="newPostButton" class="button primary" type="button">새 글 쓰기</button>
         <div id="postsList" class="posts-list" aria-live="polite"></div>
       </form>
     </dialog>
