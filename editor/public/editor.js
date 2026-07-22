@@ -363,6 +363,7 @@
       $("#linkUrl").focus();
     });
     $("#linkForm").addEventListener("submit", (event) => {
+      if (event.submitter?.value === "cancel") return;
       event.preventDefault();
       const url = $("#linkUrl").value.trim();
       if (!/^https?:\/\//i.test(url)) { toast("http:// 또는 https:// 주소를 입력해주세요."); return; }
