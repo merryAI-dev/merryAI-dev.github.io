@@ -32,8 +32,8 @@
 
   const STORAGE_KEY = "mysc-editor-draft-v1";
   const sanitizerOptions = {
-    ALLOWED_TAGS: ["p", "br", "h2", "h3", "strong", "b", "em", "i", "u", "mark", "blockquote", "pre", "code", "a", "ul", "ol", "li", "figure", "figcaption", "img", "table", "thead", "tbody", "tr", "th", "td", "hr"],
-    ALLOWED_ATTR: ["href", "target", "rel", "src", "alt", "title"]
+    ALLOWED_TAGS: ["p", "br", "h2", "h3", "strong", "b", "em", "i", "u", "s", "mark", "span", "blockquote", "pre", "code", "a", "ul", "ol", "li", "figure", "figcaption", "img", "table", "thead", "tbody", "tr", "th", "td", "hr"],
+    ALLOWED_ATTR: ["href", "target", "rel", "src", "alt", "title", "class"]
   };
 
   const state = {
@@ -55,15 +55,38 @@
     return `note-${parts.year}${parts.month}${parts.day}-${parts.hour}${parts.minute}`;
   }
 
+  function normalizeFontNodes(root) {
+    root.querySelectorAll("font[face]").forEach((node) => {
+      const face = String(node.getAttribute("face") || "").toLowerCase();
+      const span = document.createElement("span");
+      span.className = face.includes("mono") ? "text-mono" : face.includes("serif") ? "text-serif" : "text-sans";
+      span.innerHTML = node.innerHTML;
+      node.replaceWith(span);
+    });
+  }
+
   function sanitize(html) {
     const template = document.createElement("template");
     template.innerHTML = html || "";
+    normalizeFontNodes(template.content);
+    template.content.querySelectorAll("strike").forEach((node) => {
+      const strike = document.createElement("s");
+      strike.innerHTML = node.innerHTML;
+      node.replaceWith(strike);
+    });
     template.content.querySelectorAll("span[style*='background'], font[color]").forEach((node) => {
       const mark = document.createElement("mark");
       mark.innerHTML = node.innerHTML;
       node.replaceWith(mark);
     });
-    return window.DOMPurify.sanitize(template.innerHTML, sanitizerOptions);
+    const clean = document.createElement("template");
+    clean.innerHTML = window.DOMPurify.sanitize(template.innerHTML, sanitizerOptions);
+    clean.content.querySelectorAll("span").forEach((node) => {
+      const allowed = ["text-serif", "text-sans", "text-mono"].find((name) => node.classList.contains(name));
+      if (allowed) node.className = allowed;
+      else node.replaceWith(...node.childNodes);
+    });
+    return clean.innerHTML;
   }
 
   function resizeTextarea(textarea) {
@@ -283,14 +306,21 @@
   function rememberSelection() {
     const selection = window.getSelection();
     if (!selection.rangeCount || selection.isCollapsed || !elements.body.contains(selection.anchorNode)) {
-      elements.toolbar.hidden = true;
+      if (!elements.toolbar.contains(document.activeElement)) elements.toolbar.hidden = true;
       return;
     }
     state.savedRange = selection.getRangeAt(0).cloneRange();
-    const rect = state.savedRange.getBoundingClientRect();
-    elements.toolbar.style.left = `${Math.max(170, Math.min(innerWidth - 170, rect.left + rect.width / 2))}px`;
-    elements.toolbar.style.top = `${rect.top}px`;
+    const rect = state.savedRange.getClientRects()[0] || state.savedRange.getBoundingClientRect();
     elements.toolbar.hidden = false;
+    elements.toolbar.classList.toggle("is-below", rect.top < elements.toolbar.offsetHeight + 18);
+    const halfWidth = elements.toolbar.offsetWidth / 2;
+    elements.toolbar.style.left = `${Math.max(halfWidth + 8, Math.min(innerWidth - halfWidth - 8, rect.left + rect.width / 2))}px`;
+    elements.toolbar.style.top = `${elements.toolbar.classList.contains("is-below") ? rect.bottom : rect.top}px`;
+    elements.toolbar.querySelectorAll("[data-command]").forEach((button) => {
+      const pressed = ["bold", "italic", "underline", "strikeThrough"].includes(button.dataset.command)
+        && document.queryCommandState(button.dataset.command);
+      button.setAttribute("aria-pressed", String(pressed));
+    });
   }
 
   function restoreSelection() {
@@ -306,6 +336,9 @@
     restoreSelection();
     if (command === "highlight") {
       document.execCommand("hiliteColor", false, "#ffed8b");
+    } else if (command === "font") {
+      document.execCommand("fontName", false, `mysc-${value}`);
+      normalizeFontNodes(elements.body);
     } else {
       document.execCommand(command, false, value || null);
     }
@@ -352,9 +385,15 @@
     elements.body.addEventListener("input", () => { updateCount(); scheduleLocalSave(); });
     document.addEventListener("selectionchange", () => requestAnimationFrame(rememberSelection));
 
-    elements.toolbar.addEventListener("mousedown", (event) => event.preventDefault());
+    elements.toolbar.addEventListener("mousedown", (event) => {
+      if (event.target.tagName !== "SELECT") event.preventDefault();
+    });
     elements.toolbar.querySelectorAll("[data-command]").forEach((button) => {
       button.addEventListener("click", () => runCommand(button.dataset.command, button.dataset.value));
+    });
+    $("#fontSelect").addEventListener("change", (event) => {
+      if (event.target.value) runCommand("font", event.target.value);
+      event.target.value = "";
     });
 
     $("#linkButton").addEventListener("click", () => {
@@ -414,6 +453,8 @@
       }
       if (event.key === "Escape") elements.toolbar.hidden = true;
     });
+    window.addEventListener("resize", () => { elements.toolbar.hidden = true; });
+    window.addEventListener("scroll", () => { elements.toolbar.hidden = true; }, { passive: true });
     window.addEventListener("beforeunload", (event) => {
       if (fingerprint() !== state.savedFingerprint) {
         saveLocal();

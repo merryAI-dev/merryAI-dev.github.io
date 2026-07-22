@@ -247,8 +247,9 @@ export function parseFrontmatter(markdown) {
 
 export function sanitizePostHtml(html) {
   return sanitizeHtmlLibrary(String(html || ""), {
-    allowedTags: ["p", "br", "h2", "h3", "strong", "b", "em", "i", "u", "mark", "blockquote", "pre", "code", "a", "ul", "ol", "li", "figure", "figcaption", "img", "table", "thead", "tbody", "tr", "th", "td", "hr"],
-    allowedAttributes: { a: ["href", "title", "rel"], img: ["src", "alt", "title"] },
+    allowedTags: ["p", "br", "h2", "h3", "strong", "b", "em", "i", "u", "s", "mark", "span", "blockquote", "pre", "code", "a", "ul", "ol", "li", "figure", "figcaption", "img", "table", "thead", "tbody", "tr", "th", "td", "hr"],
+    allowedAttributes: { a: ["href", "title", "rel"], img: ["src", "alt", "title"], span: ["class"] },
+    allowedClasses: { span: ["text-serif", "text-sans", "text-mono"] },
     allowedSchemes: ["http", "https", "mailto"],
     allowProtocolRelative: false,
     transformTags: {

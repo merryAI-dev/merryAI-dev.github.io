@@ -188,6 +188,9 @@ button { color: inherit; }
 .editor-body pre code, .preview-body pre code { padding: 0; background: transparent; }
 .editor-body a, .preview-body a { color: inherit; text-decoration-color: #8291a6; text-underline-offset: 4px; }
 .editor-body mark, .preview-body mark { padding: .05em .12em; background: linear-gradient(transparent 15%, #ffed8b 15%, #ffed8b 88%, transparent 88%); color: inherit; }
+.editor-body .text-serif, .preview-body .text-serif { font-family: var(--serif); }
+.editor-body .text-sans, .preview-body .text-sans { font-family: var(--sans); }
+.editor-body .text-mono, .preview-body .text-mono { font-family: var(--mono); font-size: .9em; }
 .editor-body img, .preview-body img { display: block; max-width: 100%; height: auto; margin: 2.5em auto .7em; border-radius: 4px; }
 .editor-body figcaption, .preview-body figcaption { margin-bottom: 2.2em; color: var(--muted); text-align: center; font-size: 14px; }
 .editor-body table, .preview-body table { width: 100%; margin: 2em 0; border-collapse: collapse; font-size: 16px; }
@@ -206,8 +209,14 @@ button { color: inherit; }
   transform: translate(-50%, calc(-100% - 12px));
 }
 .format-toolbar::after { position: absolute; bottom: -6px; left: calc(50% - 6px); width: 12px; height: 12px; background: var(--ink); content: ""; transform: rotate(45deg); }
-.format-toolbar button { position: relative; z-index: 1; width: 40px; height: 38px; border: 0; border-radius: 8px; background: transparent; color: #fff; cursor: pointer; font: 600 13px var(--sans); }
-.format-toolbar button:hover { background: rgb(255 255 255 / 13%); }
+.format-toolbar.is-below { transform: translate(-50%, 12px); }
+.format-toolbar.is-below::after { top: -6px; bottom: auto; }
+.format-toolbar button, .format-toolbar select { position: relative; z-index: 1; flex: 0 0 auto; height: 38px; border: 0; border-radius: 8px; background: transparent; color: #fff; cursor: pointer; font: 600 13px var(--sans); }
+.format-toolbar button { width: 40px; }
+.format-toolbar select { width: 66px; padding: 0 8px; color-scheme: dark; appearance: none; text-align: center; }
+.format-toolbar button:hover, .format-toolbar button[aria-pressed="true"], .format-toolbar select:hover { background: rgb(255 255 255 / 13%); }
+.toolbar-divider { position: relative; z-index: 1; width: 1px; height: 22px; margin: 8px 3px; background: rgb(255 255 255 / 18%); }
+.highlight-icon { padding: 1px 3px; background: #ffed8b; color: var(--ink); }
 
 dialog { color: var(--ink); }
 dialog::backdrop { background: rgb(10 22 42 / 35%); backdrop-filter: blur(4px); }
@@ -260,7 +269,12 @@ dialog::backdrop { background: rgb(10 22 42 / 35%); backdrop-filter: blur(4px); 
   .description { font-size: 17px; }
   .title-rule { margin: 34px 0 36px; }
   .editor-body, .preview-body { font-size: 18px; line-height: 1.9; }
-  .format-toolbar { max-width: calc(100vw - 16px); overflow-x: auto; }
+  .format-toolbar { max-width: calc(100vw - 16px); overflow-x: auto; scrollbar-width: none; }
+  .format-toolbar::-webkit-scrollbar { display: none; }
+  .format-toolbar::after { display: none; }
+  .format-toolbar button { width: 44px; height: 44px; }
+  .format-toolbar select { width: 72px; height: 44px; }
+  .toolbar-divider { margin-block: 11px; }
   .restore-banner { width: calc(100% - 24px); top: 76px; }
   .preview-page { width: calc(100% - 36px); padding-top: 84px; }
   .sheet { margin-bottom: 0; border-radius: 18px 18px 0 0; }

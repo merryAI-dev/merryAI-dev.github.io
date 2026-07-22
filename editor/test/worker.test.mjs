@@ -12,6 +12,14 @@ test("HTML sanitizer strips scripts, handlers, and javascript URLs", () => {
   assert.match(result, /src="\/safe.png"/);
 });
 
+test("HTML sanitizer keeps only the editor's font classes", () => {
+  const result = sanitizePostHtml('<p><span class="text-serif">명조</span><span class="text-mono evil" style="position:fixed">코드</span></p>');
+  assert.match(result, /<span class="text-serif">명조<\/span>/);
+  assert.match(result, /<span class="text-mono">코드<\/span>/);
+  assert.equal(result.includes("evil"), false);
+  assert.equal(result.includes("style="), false);
+});
+
 test("frontmatter survives a serialize and parse cycle", () => {
   const markdown = serializePost({
     title: "시트를 데이터베이스로 복사하지 않았다",
