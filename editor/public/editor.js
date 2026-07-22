@@ -302,8 +302,8 @@
   }
 
   function runCommand(command, value) {
-    restoreSelection();
     elements.body.focus();
+    restoreSelection();
     if (command === "highlight") {
       document.execCommand("hiliteColor", false, "#ffed8b");
     } else {
@@ -314,8 +314,8 @@
   }
 
   function insertHtmlAtSelection(html) {
-    restoreSelection();
     elements.body.focus();
+    restoreSelection();
     document.execCommand("insertHTML", false, sanitize(html));
     scheduleLocalSave();
   }
@@ -367,8 +367,8 @@
       event.preventDefault();
       const url = $("#linkUrl").value.trim();
       if (!/^https?:\/\//i.test(url)) { toast("http:// 또는 https:// 주소를 입력해주세요."); return; }
-      runCommand("createLink", url);
       elements.link.close();
+      runCommand("createLink", url);
       $("#linkUrl").value = "";
     });
 
