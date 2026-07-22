@@ -217,8 +217,11 @@ img { display: block; max-width: 100%; }
   border-bottom: 1px solid var(--line);
 }
 
-.back-link { display: inline-block; margin-bottom: 52px; color: var(--muted); font-size: 14px; text-decoration: none; }
+.post-actions { display: flex; align-items: center; justify-content: space-between; margin-bottom: 52px; }
+.back-link { display: inline-block; color: var(--muted); font-size: 14px; text-decoration: none; }
 .back-link:hover, .back-link:focus-visible { color: var(--navy); text-decoration: underline; }
+.edit-post-link { padding: 9px 14px; border: 1px solid var(--line); border-radius: 999px; background: white; color: var(--navy); font-size: 13px; font-weight: 700; text-decoration: none; }
+.edit-post-link:hover, .edit-post-link:focus-visible { border-color: var(--navy); }
 
 .post-hero h1 { max-width: 860px; font-size: clamp(42px, 7vw, 74px); }
 
@@ -439,7 +442,7 @@ img { display: block; max-width: 100%; }
   .blog-intro { padding: 58px 0 48px; }
   .post-card > a { grid-template-columns: 1fr; gap: 6px; }
   .post-hero { padding: 54px 0 44px; }
-  .back-link { margin-bottom: 36px; }
+  .post-actions { margin-bottom: 36px; }
   .post-meta > *::after { display: none; }
   .post-content table { display: block; overflow-x: auto; white-space: nowrap; }
   .next-note { padding: 24px; }

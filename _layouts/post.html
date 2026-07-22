@@ -3,7 +3,10 @@ layout: default
 ---
 <article class="post-shell">
   <header class="post-hero">
-    <a class="back-link" href="{{ '/' | relative_url }}">← 모든 글</a>
+    <div class="post-actions">
+      <a class="back-link" href="{{ '/' | relative_url }}">← 모든 글</a>
+      <a class="edit-post-link" href="https://mysc-writing-studio.vercel.app/?path={{ page.path | uri_escape }}">이 글 수정</a>
+    </div>
     <p class="post-kicker">{{ page.series }} · {{ page.series_no | prepend: '0' | slice: -2, 2 }}</p>
     <h1>{{ page.title }}</h1>
     {% if page.description %}<p class="post-description">{{ page.description }}</p>{% endif %}
