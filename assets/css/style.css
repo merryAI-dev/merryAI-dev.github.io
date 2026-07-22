@@ -649,7 +649,7 @@ img { display: block; max-width: 100%; }
 .site-footer p { margin: 0; }
 
 @media (max-width: 820px) {
-  body { font-size: 16px; word-break: normal; overflow-wrap: anywhere; }
+  body { font-size: 16px; word-break: keep-all; overflow-wrap: break-word; }
   .site-header { min-height: 72px; }
   .brand img { width: 115px; }
   .brand span { display: none; }
