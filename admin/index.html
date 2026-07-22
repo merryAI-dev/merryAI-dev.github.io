@@ -3,96 +3,11 @@ layout: default
 title: 글쓰기
 description: MYSCube Engineering 기술 블로그 편집실
 ---
-<section class="admin-shell">
-  <header class="admin-intro">
-    <div>
-      <p class="eyebrow">MYSC EDITORIAL ROOM</p>
-      <h1>생각을 적으면,<br>발행은 자동으로.</h1>
-      <p>Git이나 Markdown을 몰라도 괜찮아요. 제목과 본문을 채우고 이미지를 끌어다 놓은 뒤, 검토가 끝나면 공개 발행만 켜주세요.</p>
-    </div>
-    <aside class="editor-note" aria-label="편집기 기본 설정">
-      <span class="editor-note-pin" aria-hidden="true"></span>
-      <p>EDITOR DEFAULT</p>
-      <strong>새 글은 초안으로 저장됩니다.</strong>
-      <span>실수로 작성 중인 글이 공개되지 않아요.</span>
-    </aside>
-  </header>
-
-  <div class="editor-actions" aria-label="편집기 바로가기">
-    <a class="editor-action editor-action-primary" href="https://app.pagescms.org/merryAI-dev/merryAI-dev.github.io/main/collection/posts/new" target="_blank" rel="noopener noreferrer">
-      <span class="editor-action-index">01</span>
-      <strong>새 글 시작</strong>
-      <small>빈 초안을 열어 글을 작성합니다.</small>
-      <b aria-hidden="true">↗</b>
-    </a>
-    <a class="editor-action" href="https://app.pagescms.org/merryAI-dev/merryAI-dev.github.io/main/collection/posts" target="_blank" rel="noopener noreferrer">
-      <span class="editor-action-index">02</span>
-      <strong>기존 글 관리</strong>
-      <small>초안과 공개 글을 찾아 수정합니다.</small>
-      <b aria-hidden="true">↗</b>
-    </a>
-    <a class="editor-action" href="{{ '/' | relative_url }}">
-      <span class="editor-action-index">03</span>
-      <strong>블로그 확인</strong>
-      <small>독자가 보는 실제 화면을 엽니다.</small>
-      <b aria-hidden="true">→</b>
-    </a>
+<section class="simple-admin">
+  <h1>글쓰기</h1>
+  <p>새 글은 비공개 초안으로 시작합니다. 검토가 끝나면 공개 발행을 켜고 저장하세요.</p>
+  <div class="simple-admin-actions">
+    <a class="primary-link" href="https://app.pagescms.org/merryAI-dev/merryAI-dev.github.io/main/collection/posts/new">새 글 쓰기</a>
+    <a href="https://app.pagescms.org/merryAI-dev/merryAI-dev.github.io/main/collection/posts">기존 글 관리</a>
   </div>
-
-  <div class="editor-board">
-    <section class="editor-workflow" aria-labelledby="workflow-title">
-      <p class="eyebrow">PUBLISHING FLOW</p>
-      <h2 id="workflow-title">작성에서 발행까지</h2>
-      <ol>
-        <li>
-          <span>1</span>
-          <div><strong>GitHub로 로그인</strong><p>처음 한 번만 로그인하면 다음부터 MYSC 편집실이 바로 열립니다.</p></div>
-        </li>
-        <li>
-          <span>2</span>
-          <div><strong>초안 작성</strong><p>제목·요약·태그를 채우고 본문에 이미지와 코드를 넣습니다.</p></div>
-        </li>
-        <li>
-          <span>3</span>
-          <div><strong>저장하고 검토</strong><p>공개 발행을 끈 채 저장하면 변경 이력만 남고 블로그에는 보이지 않습니다.</p></div>
-        </li>
-        <li>
-          <span>4</span>
-          <div><strong>공개 발행</strong><p>검토 후 공개 발행을 켜고 저장하면 GitHub Pages가 자동 배포합니다.</p></div>
-        </li>
-      </ol>
-    </section>
-
-    <aside class="editor-checklist" aria-labelledby="checklist-title">
-      <p class="eyebrow">BEFORE PUBLISH</p>
-      <h2 id="checklist-title">마지막 30초 점검</h2>
-      <ul>
-        <li>제목만 읽어도 다룬 문제가 보이나요?</li>
-        <li>선택의 이유와 포기한 대안이 있나요?</li>
-        <li>고객·직원·계약 정보가 이미지에 없나요?</li>
-        <li>모바일에서도 다이어그램 글자가 읽히나요?</li>
-        <li>공개 발행 스위치를 확인했나요?</li>
-      </ul>
-      <p class="editor-help">저장 후 반영까지 보통 1–2분 걸립니다. 실패하면 <a href="https://github.com/merryAI-dev/merryAI-dev.github.io/actions" target="_blank" rel="noopener noreferrer">배포 상태</a>를 확인하세요.</p>
-    </aside>
-  </div>
-
-  <section class="format-guide" aria-labelledby="format-title">
-    <div class="format-guide-copy">
-      <p class="eyebrow">TEXT STYLES</p>
-      <h2 id="format-title">드래그하고, 한 번만 눌러요.</h2>
-      <p>문장을 드래그하면 작은 서식 툴바가 나타납니다. 글꼴은 의미에 따라 자동으로 맞춰져 블로그 전체의 인상이 흐트러지지 않아요.</p>
-    </div>
-    <dl class="format-samples">
-      <div><dt>Bold</dt><dd><strong>핵심 문장은 마커처럼</strong></dd></div>
-      <div><dt>Underline</dt><dd><u>결론에는 손그림 밑줄</u></dd></div>
-      <div><dt>Heading · Quote</dt><dd class="sample-serif">맥락을 여는 명조 글꼴</dd></div>
-      <div><dt>Code</dt><dd><code>sheet → BFF → ledger</code></dd></div>
-    </dl>
-  </section>
-
-  <section class="editor-security" aria-label="에디터 보안 안내">
-    <strong>권한은 작게, 기록은 선명하게.</strong>
-    <p>편집기는 GitHub App으로 이 블로그 저장소에만 접근합니다. API 키나 토큰은 글이나 저장소에 입력하지 마세요.</p>
-  </section>
 </section>
