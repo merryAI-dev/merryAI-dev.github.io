@@ -8,3 +8,5 @@ editor/node_modules/
 editor/.wrangler/
 editor/.dev.vars
 editor/public/vendor/
+editor/.vercel/
+editor/.env*.local

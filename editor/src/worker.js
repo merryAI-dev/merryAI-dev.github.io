@@ -431,7 +431,7 @@ async function route(request, env) {
   if (url.pathname === "/api/posts" && request.method === "PUT") return savePost(request, env);
   if (url.pathname === "/api/images" && request.method === "POST") return saveImage(request, env);
   if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/auth/")) throw new HttpError(404, "요청한 기능을 찾을 수 없어요.");
-  return env.ASSETS.fetch(request);
+  throw new HttpError(404, "요청한 페이지를 찾을 수 없어요.");
 }
 
 export default {
