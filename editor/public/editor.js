@@ -424,7 +424,11 @@
   async function init() {
     bindEvents();
     try {
-      await api("/auth/me");
+      const auth = await api("/auth/me");
+      if (!auth.authenticated) {
+        elements.signIn.hidden = false;
+        return;
+      }
       elements.app.hidden = false;
       const path = new URLSearchParams(location.search).get("path");
       if (path) await loadPost(path);

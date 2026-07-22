@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { parseFrontmatter, sanitizePostHtml, serializePost, validateImageData, validatePostPath } from "../src/worker.js";
+import worker from "../src/worker.js";
 
 test("HTML sanitizer strips scripts, handlers, and javascript URLs", () => {
   const result = sanitizePostHtml('<p onclick="steal()">안녕<script>alert(1)</script><a href="javascript:alert(2)">링크</a><img src="/safe.png" onerror="steal()"></p>');
@@ -44,4 +45,15 @@ test("image validation checks file signatures instead of trusting MIME type", ()
   assert.equal(validateImageData(Uint8Array.of(0xff, 0xd8, 0xff, 0xe0), "image/jpeg"), true);
   assert.throws(() => validateImageData(Uint8Array.of(0x3c, 0x73, 0x76, 0x67), "image/png"), /파일 내용과 이미지 형식/);
   assert.throws(() => validateImageData(Uint8Array.of(0x89, 0x50, 0x4e, 0x47), "image/svg+xml"), /파일 내용과 이미지 형식/);
+});
+
+test("auth status is quiet for visitors while protected APIs remain unauthorized", async () => {
+  const env = { SESSION_SECRET: "test-only", ALLOWED_LOGINS: "writer" };
+  const status = await worker.fetch(new Request("https://editor.example/auth/me"), env);
+  assert.equal(status.status, 200);
+  assert.deepEqual(await status.json(), { authenticated: false });
+
+  const protectedResponse = await worker.fetch(new Request("https://editor.example/api/posts"), env);
+  assert.equal(protectedResponse.status, 401);
+  assert.deepEqual(await protectedResponse.json(), { error: "로그인이 필요해요." });
 });

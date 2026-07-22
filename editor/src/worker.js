@@ -106,12 +106,16 @@ function allowedLogins(env) {
   return String(env.ALLOWED_LOGINS || "").split(",").map((value) => value.trim().toLowerCase()).filter(Boolean);
 }
 
-async function requireSession(request, env) {
+async function readSession(request, env) {
   required(env, ["SESSION_SECRET", "ALLOWED_LOGINS"]);
   const payload = await verifySignedValue(env.SESSION_SECRET, parseCookies(request)[SESSION_COOKIE]);
-  if (!payload || payload.exp < Math.floor(Date.now() / 1000) || !allowedLogins(env).includes(String(payload.login).toLowerCase())) {
-    throw new HttpError(401, "로그인이 필요해요.");
-  }
+  if (!payload || payload.exp < Math.floor(Date.now() / 1000) || !allowedLogins(env).includes(String(payload.login).toLowerCase())) return null;
+  return payload;
+}
+
+async function requireSession(request, env) {
+  const payload = await readSession(request, env);
+  if (!payload) throw new HttpError(401, "로그인이 필요해요.");
   return payload;
 }
 
@@ -413,8 +417,8 @@ async function route(request, env) {
   if (url.pathname === "/auth/callback" && request.method === "GET") return callback(request, env);
   if (url.pathname === "/auth/logout" && request.method === "GET") return redirect("/", [cookie(SESSION_COOKIE, "", 0)]);
   if (url.pathname === "/auth/me" && request.method === "GET") {
-    const session = await requireSession(request, env);
-    return json({ login: session.login });
+    const session = await readSession(request, env);
+    return json(session ? { authenticated: true, login: session.login } : { authenticated: false });
   }
   if (url.pathname.startsWith("/api/")) await requireSession(request, env);
   if (url.pathname === "/api/posts" && request.method === "GET") {
