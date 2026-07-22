@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffffff">
+    <title>MYSC 글쓰기</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/vendor/marked.js"></script>
+    <script defer src="/vendor/purify.min.js"></script>
+    <script defer src="/editor.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#editorBody">본문 편집기로 이동</a>
+
+    <main id="signIn" class="sign-in" hidden>
+      <img src="/mysc-logo.png" alt="MYSC">
+      <h1>우리의 일을<br>우리의 언어로.</h1>
+      <p>MYSCube를 만들며 배운 것을 기록합니다.</p>
+      <a class="button primary" href="/auth/login">GitHub로 시작하기</a>
+    </main>
+
+    <div id="editorApp" hidden>
+      <header class="topbar">
+        <a class="wordmark" href="https://merryai-dev.github.io/" aria-label="MYSCube Engineering으로 돌아가기">
+          <img src="/mysc-logo.png" alt="MYSC">
+          <span>WRITE</span>
+        </a>
+        <p id="saveState" class="save-state" aria-live="polite">새 글</p>
+        <nav aria-label="글 작업">
+          <button id="postsButton" class="text-button" type="button">내 글</button>
+          <button id="settingsButton" class="text-button" type="button">설정</button>
+          <button id="previewButton" class="text-button" type="button">미리보기</button>
+          <button id="saveButton" class="button" type="button">저장</button>
+          <button id="publishButton" class="button primary" type="button">발행</button>
+        </nav>
+      </header>
+
+      <aside id="restoreBanner" class="restore-banner" hidden>
+        <span>이 브라우저에 저장된 원고가 있어요.</span>
+        <button id="restoreButton" type="button">복구</button>
+        <button id="discardButton" type="button">지우기</button>
+      </aside>
+
+      <main class="writing-desk">
+        <label class="sr-only" for="title">제목</label>
+        <textarea id="title" class="title" rows="1" maxlength="120" placeholder="제목을 입력하세요"></textarea>
+        <label class="sr-only" for="description">한 줄 요약</label>
+        <textarea id="description" class="description" rows="1" maxlength="240" placeholder="이 글을 한 문장으로 소개해보세요"></textarea>
+        <div class="title-rule" aria-hidden="true"></div>
+        <article id="editorBody" class="editor-body" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="이야기를 시작하세요…"><p><br></p></article>
+        <footer class="document-foot">
+          <span id="wordCount">0자</span>
+          <button id="imageButton" class="text-button" type="button">이미지 넣기</button>
+          <input id="imageInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+        </footer>
+      </main>
+
+      <div id="formatToolbar" class="format-toolbar" role="toolbar" aria-label="본문 서식" hidden>
+        <button type="button" data-command="formatBlock" data-value="h2" aria-label="제목">H2</button>
+        <button type="button" data-command="bold" aria-label="굵게"><strong>B</strong></button>
+        <button type="button" data-command="underline" aria-label="밑줄"><u>U</u></button>
+        <button type="button" data-command="highlight" aria-label="하이라이트">M</button>
+        <button type="button" data-command="formatBlock" data-value="blockquote" aria-label="인용">“”</button>
+        <button type="button" data-command="formatBlock" data-value="pre" aria-label="코드">&lt;/&gt;</button>
+        <button id="linkButton" type="button" aria-label="링크">↗</button>
+      </div>
+    </div>
+
+    <dialog id="settingsDialog" class="sheet">
+      <form method="dialog">
+        <header><h2>글 설정</h2><button value="cancel" aria-label="닫기">×</button></header>
+        <label>영문 주소<input id="slug" pattern="[a-z0-9-]{3,80}" placeholder="note-20260722"></label>
+        <label>시리즈<input id="series" value="Building the Ledger" maxlength="80"></label>
+        <label>시리즈 번호<input id="seriesNo" type="number" min="1" value="1"></label>
+        <label>태그<input id="tags" placeholder="MYSCube, Backend" maxlength="120"></label>
+        <label>예상 읽기 시간<input id="readingTime" type="number" min="1" max="120" value="8"></label>
+        <label class="check"><input id="published" type="checkbox"> 공개 상태 유지</label>
+        <p>기존 공개 글을 저장할 때 체크가 유지되어야 비공개로 바뀌지 않습니다.</p>
+        <button class="button primary" value="confirm">설정 완료</button>
+      </form>
+    </dialog>
+
+    <dialog id="postsDialog" class="sheet posts-sheet">
+      <form method="dialog">
+        <header><h2>내 글</h2><button value="cancel" aria-label="닫기">×</button></header>
+        <button id="newPostButton" class="button primary" type="button">새 글</button>
+        <div id="postsList" class="posts-list" aria-live="polite"></div>
+      </form>
+    </dialog>
+
+    <dialog id="previewDialog" class="preview-dialog">
+      <form method="dialog"><button class="preview-close" value="cancel" aria-label="미리보기 닫기">×</button></form>
+      <article class="preview-page">
+        <p id="previewSeries" class="preview-series"></p>
+        <h1 id="previewTitle"></h1>
+        <p id="previewDescription" class="preview-description"></p>
+        <div id="previewBody" class="preview-body"></div>
+      </article>
+    </dialog>
+
+    <dialog id="linkDialog" class="link-dialog">
+      <form id="linkForm" method="dialog">
+        <label>링크 주소<input id="linkUrl" type="url" placeholder="https://"></label>
+        <div><button value="cancel">취소</button><button class="button primary" value="confirm">링크 적용</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="discardDialog" class="link-dialog">
+      <form method="dialog">
+        <h2>새 글을 시작할까요?</h2>
+        <p>지금 브라우저에 남아 있는 원고는 지워져요.</p>
+        <div><button value="cancel">계속 쓰기</button><button id="confirmNewButton" class="button primary" value="confirm">새 글 시작</button></div>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  </body>
+</html>

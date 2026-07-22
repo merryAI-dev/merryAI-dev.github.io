@@ -4,3 +4,7 @@ _site/
 .sass-cache/
 vendor/
 .gstack/
+editor/node_modules/
+editor/.wrangler/
+editor/.dev.vars
+editor/public/vendor/
