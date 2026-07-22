@@ -147,7 +147,7 @@ content:
         label: 본문
         type: rich-text
         required: true
-        description: 툴바로 제목, 목록, 링크, 코드, 이미지를 넣을 수 있습니다. 이미지는 본문에 끌어다 놓아도 됩니다.
+        description: 문장을 드래그하면 굵게·밑줄·링크 툴바가 열립니다. Block style에서 본문·제목·인용·코드 글꼴을 바꿀 수 있고, 이미지는 끌어다 놓아도 됩니다.
         options:
           format: markdown
           media: post_images
