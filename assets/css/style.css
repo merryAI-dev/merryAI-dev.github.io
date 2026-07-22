@@ -81,6 +81,9 @@ img { display: block; max-width: 100%; }
 .site-nav { display: flex; align-items: center; gap: 8px; }
 
 .site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   padding: 9px 13px;
   border-radius: 4px;
   font-size: 14px;
