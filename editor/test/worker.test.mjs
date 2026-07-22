@@ -57,3 +57,12 @@ test("auth status is quiet for visitors while protected APIs remain unauthorized
   assert.equal(protectedResponse.status, 401);
   assert.deepEqual(await protectedResponse.json(), { error: "로그인이 필요해요." });
 });
+
+test("runtime configuration ignores accidental surrounding whitespace", async () => {
+  const response = await worker.fetch(new Request("https://editor.example/auth/login"), {
+    GITHUB_CLIENT_ID: "client-id-without-newline\n",
+    SESSION_SECRET: "test-only\n"
+  });
+  const location = new URL(response.headers.get("location"));
+  assert.equal(location.searchParams.get("client_id"), "client-id-without-newline");
+});

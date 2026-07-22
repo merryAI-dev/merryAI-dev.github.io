@@ -8,6 +8,19 @@ const STATE_COOKIE = "mysc_editor_oauth_state";
 const POST_PATH = /^_posts\/\d{4}-\d{2}-\d{2}-[a-z0-9-]{3,80}\.md$/;
 const IMAGE_PATH = /^assets\/images\/posts\/\d{4}\/\d{2}\/[a-z0-9-]+\.(?:png|jpe?g|webp|gif)$/;
 const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
+const CONFIG_KEYS = [
+  "GITHUB_APP_ID",
+  "GITHUB_CLIENT_ID",
+  "GITHUB_CLIENT_SECRET",
+  "GITHUB_PRIVATE_KEY",
+  "GITHUB_INSTALLATION_ID",
+  "GITHUB_OWNER",
+  "GITHUB_REPO",
+  "GITHUB_BRANCH",
+  "SESSION_SECRET",
+  "ALLOWED_LOGINS",
+  "POST_AUTHOR"
+];
 let installationTokenCache = null;
 
 class HttpError extends Error {
@@ -100,6 +113,14 @@ function cookie(name, value, maxAge) {
 function required(env, keys) {
   const missing = keys.filter((key) => !env[key]);
   if (missing.length) throw new HttpError(503, "편집기 연결 설정을 마무리하고 있어요.");
+}
+
+function normalizeConfig(env) {
+  const normalized = { ...env };
+  for (const key of CONFIG_KEYS) {
+    if (typeof normalized[key] === "string") normalized[key] = normalized[key].trim();
+  }
+  return normalized;
 }
 
 function allowedLogins(env) {
@@ -437,7 +458,7 @@ async function route(request, env) {
 export default {
   async fetch(request, env) {
     try {
-      return await route(request, env);
+      return await route(request, normalizeConfig(env));
     } catch (error) {
       const status = error instanceof HttpError ? error.status : 500;
       return json({ error: status === 500 ? "잠시 문제가 생겼어요. 다시 시도해주세요." : error.message }, status);
