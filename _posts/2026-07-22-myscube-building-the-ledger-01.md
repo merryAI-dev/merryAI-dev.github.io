@@ -16,7 +16,7 @@ card_image: /assets/images/diagrams/building-ledger-01/02-semantic-migration-exc
 next_title: 주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 세운 이유
 ---
 
-<p>안녕하세요. MYSCube를 만들고 있는 MYSC AX팀입니다.</p>
+<p>안녕하세요. MYSCube를 만들고 있는 MYSC AXR팀입니다.</p>
 <p><strong>MYSCube는 MYSC가 자체 개발한 내부 ERP입니다.</strong> 프로젝트, 예산, 지출, 정산, 현금흐름처럼 조직 운영을 지탱하는 데이터를 하나의 흐름으로 연결합니다. 이 ERP를 만들며 가장 먼저 풀어야 했던 문제는 새로운 화면을 만드는 일이 아니었습니다. 이미 구글 시트 안에서 잘 돌아가고 있던 업무를 어떻게 시스템으로 옮길 것인가가 먼저였습니다.</p>
 <p>처음에는 문제가 단순해 보였습니다.</p>
 <ol>
@@ -264,10 +264,8 @@ next_title: 주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 �
     a1,
     sheetAmount,
   }))
-  .sort(compareCell);
-
-const baselineHash = sha256(JSON.stringify(baseline));
-</code></pre>
+  .sort(compareCell);</code><p><code>const baselineHash = sha256(JSON.stringify(baseline));
+</code></p></pre><p></p>
 <p>반영 요청에서는 캐시를 사용하지 않고 구글 시트를 새로 읽습니다. 현재 기준 해시가 사용자가 미리보기에서 받은 값과 다르면 <code>409 Conflict</code>를 반환합니다.</p>
 <pre><code>시트가 검토 이후 변경되었습니다.
 현재 시트 값을 다시 검토한 뒤 반영해 주세요.
