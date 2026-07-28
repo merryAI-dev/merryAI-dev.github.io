@@ -14,7 +14,7 @@ tags:
 reading_time: 17
 published: true
 card_image: /assets/images/diagrams/building-ledger-02/bff-jvm-role-separation.png
-next_title: 주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 세운 이유
+next_title: 주정산을 마쳤는데, 숫자가 다시 바뀌었다
 ---
 
 <p>안녕하세요. MYSCube를 만들고 있는 MYSC AXR팀입니다.</p>
@@ -26,7 +26,7 @@ next_title: 주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 �
 <blockquote>
 <p>시트 값을 읽는 것과 시트 계산을 믿는 것은 다른 문제다.</p>
 </blockquote>
-<p>그래서 MYSCube는 구글 시트의 값을 단순히 불러오는 데서 멈추지 않았습니다. BFF는 시트의 구조와 셀 상태를 정리하고, JVM 위에서 실행되는 Spring Boot 서버는 같은 입력으로 입금 합계·출금 합계·잔액을 다시 계산합니다. 두 결과가 다르면 어느 셀에서 무엇이 어긋났는지 사람에게 보여줍니다.</p>
+<p>그래서 MYSCube는 구글 시트의 값을 단순히 불러오는 데서 멈추지 않았습니다. 화면과 외부 서비스를 이어 주는 중간 서버인 BFF(Backend for Frontend)는 시트의 구조와 셀 상태를 정리합니다. 자바 프로그램을 실행하는 환경인 JVM(Java Virtual Machine) 위에서 동작하는 Spring Boot 서버는 같은 입력으로 입금 합계·출금 합계·잔액을 다시 계산합니다. Spring Boot는 자바로 서버를 만드는 데 사용하는 개발 도구입니다. 두 결과가 다르면 어느 셀에서 무엇이 어긋났는지 사람에게 보여줍니다.</p>
 
 <h2>합계 셀 하나가 비어 있다는 것</h2>
 <p><code>BL22</code> 셀을 다시 보겠습니다.</p>
@@ -105,14 +105,14 @@ next_title: 주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 �
 <h3>1. 브라우저에서 다시 계산한다</h3>
 <p>화면에서 입금과 출금을 더하면 구현은 빠릅니다. 하지만 화면마다 같은 계산을 반복하게 되고, 화면을 거치지 않는 저장 요청에는 같은 규칙을 강제할 수 없습니다. 사용자가 오래된 화면을 열어 둔 상태라면 서버의 규칙과 다른 계산을 할 수도 있습니다.</p>
 <h3>2. BFF에서 계산하고 판단한다</h3>
-<p>BFF(Backend for Frontend)는 화면이 쓰기 편한 형태로 여러 서비스의 응답을 조합하는 서버입니다. 구글 시트와 가장 가까운 곳에 있으므로 셀 위치를 읽고 합계를 계산하기에도 편합니다.</p>
+<p>BFF는 화면이 쓰기 편한 형태로 여러 서비스의 응답을 조합하는 서버입니다. 구글 시트와 가장 가까운 곳에 있으므로 셀 위치를 읽고 합계를 계산하기에도 편합니다.</p>
 <p>하지만 BFF가 시트 구조 해석과 재무 규칙의 최종 판단을 모두 맡으면 책임이 섞입니다. 시트 열이 바뀌는 문제와 잔액 계산 규칙이 바뀌는 문제가 같은 코드에서 충돌합니다. 또 다른 저장 경로가 BFF의 계산을 우회하면 공식 규칙이 둘로 갈라질 수 있습니다.</p>
 <h3>3. BFF는 구조를 정리하고 JVM이 계산을 검증한다</h3>
 <p>저희가 선택한 방식입니다.</p>
 <ul>
 <li>BFF는 구글 시트를 한 번 읽고, 셀 위치·주차·항목·상태를 내부 서버가 이해할 수 있는 형태로 정리합니다.</li>
-<li>JVM(Java Virtual Machine, 자바 가상 머신) 위의 Spring Boot 서버는 입금·출금·잔액을 독립적으로 계산합니다.</li>
-<li>Firestore 반영과 변경 이력, 같은 요청을 두 번 보내도 한 번만 반영하는 규칙은 JVM이 책임집니다.</li>
+<li>JVM 위의 Spring Boot 서버는 입금·출금·잔액을 독립적으로 계산합니다.</li>
+<li>구글의 문서형 데이터베이스인 Firestore 반영과 변경 이력, 같은 요청을 두 번 보내도 한 번만 반영하는 규칙은 JVM이 책임집니다.</li>
 <li>프론트엔드는 계산하지 않고 결과와 원본 셀 위치를 보여줍니다.</li>
 </ul>
 <p><img src="/assets/images/diagrams/building-ledger-02/bff-jvm-role-separation.png" alt="구글 시트 값을 BFF가 구조화하고 JVM이 독립 계산한 뒤 Firestore에 반영하거나 사람에게 차이를 보여주는 구조" /></p>
@@ -151,7 +151,7 @@ next_title: 주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 �
 <li>이전 연도의 입출금에서 계산한 시작 잔액</li>
 <li>연간 입금 합계·출금 합계·잔액</li>
 </ul>
-<p>실적값의 원천에는 행 수가 달라지는 <code>SUMIFS</code> 수식도 있습니다. JVM은 이 가변 수식을 다시 구현하지 않습니다. 구글 시트가 계산한 각 실적 항목의 결과를 입력 근거로 받고, 그 아래의 고정된 합계와 잔액이 맞는지를 독립적으로 검증합니다.</p>
+<p>실적값의 원천에는 조건에 맞는 값만 골라 더하는 <code>SUMIFS</code> 수식도 있습니다. 대상 행 수는 매번 달라질 수 있습니다. JVM은 이 수식을 다시 구현하지 않습니다. 구글 시트가 계산한 각 실적 항목의 결과를 입력 근거로 받고, 그 아래의 고정된 합계와 잔액이 맞는지를 독립적으로 검증합니다.</p>
 <blockquote>
 <p>엑셀을 다시 만드는 것이 아니라, 우리 업무에서 반드시 지켜야 하는 계산만 코드로 고정한다.</p>
 </blockquote>
@@ -182,7 +182,7 @@ next_title: 주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 �
 <p><em>그림 3. 계산이 다르면 자동 수정하지 않고 사람이 시트와 기대값을 함께 확인합니다.</em></p>
 <p><code>BL22</code>의 경우 사용자는 다음 내용을 보게 됩니다.</p>
 <blockquote>
-<p><strong>2026년 12월 5주차 · Projection · 입금 합계</strong><br />
+<p><strong>2026년 12월 5주차 · 예측값(Projection) · 입금 합계</strong><br />
 <strong>BL22 셀</strong>은 해당 기간의 입금 항목을 모두 더한 값입니다.<br />
 시트에는 <strong>0원</strong>이 표시되어야 합니다.<br />
 현재 시트에는 이 값이 비어 있습니다.</p>
@@ -258,5 +258,5 @@ next_title: 주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 �
 <p>계산의 옳고 그름을 JVM이 판단하게 되자 다음 질문은 그 결과를 어떤 명령과 상태로 저장할 것인가였습니다. 주정산을 단순한 생성·조회·수정·삭제로 다루면 중복 요청과 동시 수정, 그리고 “확인 완료”와 “최종 확정”의 차이를 표현하기 어렵습니다.</p>
 <p>다음 글에서는 Express BFF 뒤에 Spring Boot 기반 주정산 API를 두고, 저장을 버전이 있는 명령과 상태 전이로 다루게 된 과정을 소개하겠습니다.</p>
 <blockquote>
-<p>다음 편: <strong>주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 세운 이유</strong></p>
+<p>다음 편: <strong>주정산을 마쳤는데, 숫자가 다시 바뀌었다</strong></p>
 </blockquote>
