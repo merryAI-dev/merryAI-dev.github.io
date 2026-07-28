@@ -13,7 +13,7 @@ tags:
 reading_time: 18
 published: true
 card_image: /assets/images/diagrams/building-ledger-01/02-semantic-migration-excalidraw.png
-next_title: 주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 세운 이유
+next_title: 시트의 숫자를 그대로 믿지 않았다
 ---
 
 <p>안녕하세요. MYSCube를 만들고 있는 MYSC AXR팀입니다.</p>
@@ -344,11 +344,8 @@ next_title: 주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 �
 <li>어느 시스템이 최종 값을 결정하는지에 대한 권위</li>
 </ul>
 <p>저희가 선택한 방법은 원본을 그대로 복제하는 것이 아니었습니다. 구글 시트의 기준 시점을 기록하고, 수식과 오류를 분류하고, 업무 의미를 표준 모델로 옮겼습니다. 구글 시트는 익숙한 입출력 채널로 남기되, 변경은 미리보기와 검토를 거쳐 적용하고, 충돌과 반영 결과를 다시 검증하도록 만들었습니다.</p>
-<p>이 과정을 거치면서 다음 단계의 질문이 생겼습니다.</p>
-<p>시트에서 들어온 한 주의 지출을 누가 확정해야 할까요? 같은 요청이 두 번 도착하면 어떻게 해야 할까요? 사용자가 동시에 같은 행을 고쳤을 때 어느 변경을 받아들여야 할까요? 그리고 마감된 주차는 정말 수정할 수 없어야 할까요?</p>
-<p>다음 글에서는 이 질문을 해결하기 위해 Express BFF 뒤에 Spring Boot 기반 주정산 API를 두고, 저장을 단순 CRUD가 아닌 버전이 있는 명령과 상태 전이로 다루게 된 과정을 소개하겠습니다.</p>
-<h3>JVM은 무엇이고, 왜 뒤에 둘까?</h3>
-<p>JVM(Java Virtual Machine, 자바 가상 머신)은 Java와 Kotlin 같은 언어로 작성한 서버 프로그램을 실행하는 환경입니다. MYSCube에서는 구글 시트에 맞춘 요청 변환은 Express BFF가 맡고, 주정산 규칙과 상태 전이, 동시성 제어처럼 일관성이 중요한 처리는 JVM 위의 Spring Boot 서버가 맡습니다. 화면과 외부 서비스에 가까운 계층은 가볍게 유지하면서, 핵심 업무 규칙은 강한 자료형과 트랜잭션 경계를 갖춘 서버에서 지키기 위한 분리입니다.</p>
+<p>시트의 값을 업무 데이터로 옮기는 데는 성공했습니다. 하지만 값을 읽어 왔다는 사실만으로 그 숫자를 원장에 반영할 수는 없었습니다. 합계와 잔액이 맞는지, 같은 요청이 두 번 처리되지는 않는지, 누가 최종 반영을 허용할지를 판단할 서버가 필요했습니다.</p>
+<p>그래서 구글 시트의 구조를 해석하는 일은 Express BFF에 남기고, 입금·출금·잔액의 계산과 저장 규칙은 JVM(Java Virtual Machine, 자바 가상 머신) 위의 Spring Boot 서버가 다시 검증하도록 역할을 나눴습니다.</p>
 <blockquote>
-<p>다음 편: <strong>주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 세운 이유</strong></p>
+<p>다음 편: <strong>시트의 숫자를 그대로 믿지 않았다</strong></p>
 </blockquote>

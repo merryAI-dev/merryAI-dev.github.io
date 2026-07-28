@@ -14,7 +14,7 @@ tags:
 reading_time: 17
 published: true
 card_image: /assets/images/diagrams/building-ledger-02/bff-jvm-role-separation.png
-next_title: "월결산은 저장 버튼이 아니었다: 확정값과 재오픈을 설계한 이유"
+next_title: 주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 세운 이유
 ---
 
 <p>안녕하세요. MYSCube를 만들고 있는 MYSC AXR팀입니다.</p>
@@ -255,7 +255,8 @@ next_title: "월결산은 저장 버튼이 아니었다: 확정값과 재오픈�
 <li>프론트엔드는 계산하지 않고 사람이 판단할 수 있는 설명을 보여줍니다.</li>
 </ul>
 <p>이 구조에서 가장 중요한 결과는 오류를 자동으로 고치는 기능이 아닙니다. 시스템이 “시트와 계산이 다르다”고 말하고, 어느 셀을 왜 확인해야 하는지 설명할 수 있게 된 것입니다.</p>
-<p>다음 글에서는 월결산을 다룹니다. 한 달의 값을 확정할 때 무엇을 고정해야 하는지, 동시에 시트 반영이 진행 중이면 왜 결산을 멈춰야 하는지, 확정한 달을 다시 열 때 어떤 승인과 이력을 남겨야 하는지 소개하겠습니다.</p>
+<p>계산의 옳고 그름을 JVM이 판단하게 되자 다음 질문은 그 결과를 어떤 명령과 상태로 저장할 것인가였습니다. 주정산을 단순한 생성·조회·수정·삭제로 다루면 중복 요청과 동시 수정, 그리고 “확인 완료”와 “최종 확정”의 차이를 표현하기 어렵습니다.</p>
+<p>다음 글에서는 Express BFF 뒤에 Spring Boot 기반 주정산 API를 두고, 저장을 버전이 있는 명령과 상태 전이로 다루게 된 과정을 소개하겠습니다.</p>
 <blockquote>
-<p>다음 편: <strong>월결산은 저장 버튼이 아니었다: 확정값과 재오픈을 설계한 이유</strong></p>
+<p>다음 편: <strong>주정산은 CRUD가 아니었다 — Express BFF 뒤에 Spring을 세운 이유</strong></p>
 </blockquote>
