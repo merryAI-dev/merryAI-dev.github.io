@@ -13,7 +13,7 @@ tags:
 reading_time: 18
 published: true
 card_image: /assets/images/diagrams/building-ledger-01/02-semantic-migration-excalidraw.png
-next_title: 시트의 숫자를 그대로 믿지 않았다
+next_title: "스프레드시트 마이그레이션하기: 두 개의 백엔드"
 ---
 
 <p>안녕하세요. MYSCube를 만들고 있는 MYSC AXR팀입니다.</p>
@@ -347,5 +347,5 @@ next_title: 시트의 숫자를 그대로 믿지 않았다
 <p>시트의 값을 업무 데이터로 옮기는 데는 성공했습니다. 하지만 값을 읽어 왔다는 사실만으로 그 숫자를 원장에 반영할 수는 없었습니다. 합계와 잔액이 맞는지, 같은 요청이 두 번 처리되지는 않는지, 누가 최종 반영을 허용할지를 판단할 서버가 필요했습니다.</p>
 <p>그래서 구글 시트의 구조를 해석하는 일은 Express BFF에 남기고, 입금·출금·잔액의 계산과 저장 규칙은 JVM(Java Virtual Machine, 자바 가상 머신) 위의 Spring Boot 서버가 다시 검증하도록 역할을 나눴습니다.</p>
 <blockquote>
-<p>다음 편: <strong>시트의 숫자를 그대로 믿지 않았다</strong></p>
+<p>다음 편: <strong>스프레드시트 마이그레이션하기: 두 개의 백엔드</strong></p>
 </blockquote>
