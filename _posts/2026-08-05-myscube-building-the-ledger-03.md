@@ -1,6 +1,6 @@
 ---
-title: "주정산을 마쳤는데, 숫자가 다시 바뀌었다"
-description: 주간 업무의 완료와 재무 데이터의 확정을 분리하고, 두 백엔드 사이의 책임을 다시 설계한 과정
+title: "월결산은 어떻게 숫자를 확정하는가"
+description: 주정산의 완료와 월결산의 잠금을 분리하고, 두 백엔드 사이의 상태·승인·저장 권한을 설계한 과정
 author: MYSC AXR팀
 date: 2026-08-05
 series: Building the Ledger
