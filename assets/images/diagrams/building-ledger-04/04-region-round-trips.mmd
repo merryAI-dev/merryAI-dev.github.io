@@ -12,20 +12,20 @@ config:
     tertiaryColor: '#F7FBFC'
 ---
 flowchart TB
-    subgraph BEFORE["이전 · 서울 서버와 미국 저장소"]
+    subgraph BEFORE["이전 · 사용자 인접 서버와 원격 저장소"]
         direction LR
-        U1["한국의 사용자"] --> K1["서울 BFF"]
-        K1 --> K2["서울 JVM"]
-        K1 == "여러 차례 장거리 왕복<br/>약 200ms씩" ==> D1[("미국 Firestore")]
-        K2 == "7차례 장거리 왕복" ==> D1
+        U1["사용자"] --> K1["사용자 인접 BFF"]
+        K1 --> K2["사용자 인접 JVM"]
+        K1 == "요청마다 여러 차례<br/>장거리 왕복" ==> D1[("원격 데이터 저장소")]
+        K2 == "반복되는 장거리 왕복" ==> D1
     end
 
     subgraph AFTER["변경 · 계산을 데이터 가까이"]
         direction LR
-        U2["한국의 사용자"] == "장거리 구간은<br/>요청당 한 번" ==> B2["미국 BFF<br/>iad1"]
-        B2 --> J2["미국 JVM<br/>us-central1"]
-        B2 -->|"약 10ms"| D2[("미국 Firestore")]
-        J2 -->|"약 10ms"| D2
+        U2["사용자"] == "장거리 구간은<br/>요청당 한 번" ==> B2["데이터 인접 BFF"]
+        B2 --> J2["데이터 인접 JVM"]
+        B2 -->|"짧은 내부 왕복"| D2[("데이터 저장소")]
+        J2 -->|"짧은 내부 왕복"| D2
     end
 
     BEFORE -->|"측정 후 전제 수정"| AFTER
