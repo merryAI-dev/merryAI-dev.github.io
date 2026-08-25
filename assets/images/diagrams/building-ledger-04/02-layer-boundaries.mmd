@@ -1,0 +1,28 @@
+---
+config:
+  theme: base
+  look: handDrawn
+  themeVariables:
+    fontFamily: Pretendard
+    primaryColor: '#E8F7FB'
+    primaryTextColor: '#062E61'
+    primaryBorderColor: '#59BDD8'
+    lineColor: '#5F7082'
+---
+flowchart TB
+    API["API 계층<br/>외부 요청을 내부 언어로 번역"] --> APP["애플리케이션 계층<br/>한 번의 업무 흐름을 지휘"]
+    APP --> DOMAIN["도메인 계층<br/>160개 완전성·금액·승인 규칙"]
+    APP --> PORT["읽기·저장 포트<br/>필요한 기능만 정의"]
+    ADAPTER["저장 어댑터<br/>Firestore·관계형 DB"] -. "포트를 구현" .-> PORT
+    ADAPTER --> DB[("저장소")]
+
+    NOTE["의존 방향은<br/>업무 규칙을 향해 흐릅니다"] -.-> DOMAIN
+
+    classDef edge fill:#F7FBFC,stroke:#5F7082,color:#172536,stroke-width:2px;
+    classDef app fill:#E8F7FB,stroke:#59BDD8,color:#062E61,stroke-width:2px;
+    classDef domain fill:#FFF3E8,stroke:#FF7A1A,color:#062E61,stroke-width:3px;
+    classDef store fill:#062E61,stroke:#031F43,color:#FFFFFF,stroke-width:2px;
+    class API,ADAPTER edge;
+    class APP,PORT app;
+    class DOMAIN,NOTE domain;
+    class DB store;

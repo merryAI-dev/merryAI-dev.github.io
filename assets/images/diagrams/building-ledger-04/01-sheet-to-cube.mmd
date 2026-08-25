@@ -1,0 +1,28 @@
+---
+config:
+  theme: base
+  look: handDrawn
+  themeVariables:
+    fontFamily: Pretendard
+    primaryColor: '#E8F7FB'
+    primaryTextColor: '#062E61'
+    primaryBorderColor: '#59BDD8'
+    lineColor: '#5F7082'
+    secondaryColor: '#FFF3E8'
+    tertiaryColor: '#F7FBFC'
+---
+flowchart LR
+    A["구글 시트<br/>셀·수식·빈칸"] -->|"읽고 번역"| B["화면 가까운 서버<br/>BFF"]
+    B -->|"프로젝트·기간·항목"| C["업무 흐름<br/>애플리케이션"]
+    C -->|"계산·검증 요청"| D["월결산 규칙<br/>도메인"]
+    D -->|"검증된 결과"| C
+    C -->|"공식 기록 저장"| E[("MYSCube<br/>공식 저장소")]
+
+    classDef source fill:#F7FBFC,stroke:#5F7082,color:#172536,stroke-width:2px;
+    classDef translate fill:#E8F7FB,stroke:#59BDD8,color:#062E61,stroke-width:2px;
+    classDef rule fill:#FFF3E8,stroke:#FF7A1A,color:#062E61,stroke-width:2px;
+    classDef store fill:#062E61,stroke:#031F43,color:#FFFFFF,stroke-width:2px;
+    class A source;
+    class B,C translate;
+    class D rule;
+    class E store;

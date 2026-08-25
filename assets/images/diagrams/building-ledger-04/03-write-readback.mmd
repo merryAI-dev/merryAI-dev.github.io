@@ -1,0 +1,29 @@
+---
+config:
+  theme: base
+  look: handDrawn
+  themeVariables:
+    fontFamily: Pretendard
+    primaryColor: '#E8F7FB'
+    primaryTextColor: '#062E61'
+    primaryBorderColor: '#59BDD8'
+    lineColor: '#5F7082'
+    secondaryColor: '#FFF3E8'
+---
+sequenceDiagram
+    actor U as 월결산 담당자
+    participant B as 화면 가까운 서버
+    participant J as 공식 기록 서버
+    participant S as 저장소
+    U->>B: 시트 반영 요청
+    B->>J: 기간·항목·값·기준 버전
+    J->>J: 완전성·수식·버전 검증
+    J->>S: 공식 기록 저장
+    S-->>J: 새 버전
+    J-->>B: 저장 결과
+    B->>J: 공식값 다시 조회
+    J->>S: 현재 월결산 조회
+    S-->>J: 공식 월결산
+    J-->>B: 저장된 항목과 버전
+    B->>B: 요청값과 공식값 대조
+    B-->>U: 확인된 성공 또는 재확인 안내
