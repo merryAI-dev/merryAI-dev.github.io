@@ -296,12 +296,9 @@ img { display: block; max-width: 100%; }
 .post-content p { margin: 1.35em 0; }
 
 .post-content strong {
-  padding: 0 0.06em;
   color: var(--navy-deep);
-  background: linear-gradient(transparent 62%, rgba(255, 220, 72, 0.68) 62%);
+  font-size: 1.04em;
   font-weight: 780;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
 }
 
 .post-content u {
