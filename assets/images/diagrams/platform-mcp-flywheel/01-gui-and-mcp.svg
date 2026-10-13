@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660" role="img" aria-label="화면 탐색과 업무 도구 호출"><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#062E61"/></marker></defs><rect width="100%" height="100%" fill="#F7FBFC"/>
+<style>text{font-family:"Apple SD Gothic Neo","Noto Sans CJK KR",sans-serif;fill:#062E61}.title{font-size:34px;font-weight:700}.sub{font-size:19px;fill:#5F7082}.head{font-size:24px;font-weight:700}.body{font-size:20px}.small{font-size:18px;fill:#5F7082}</style>
+<text x="48" y="60" class="title">화면 탐색과 업무 도구 호출</text>
+<text x="48" y="97" class="sub">같은 현황 조회를 처리하는 두 경로 · 실행 단계 예시이며 측정 결과가 아닙니다</text>
+<text x="48" y="165" class="head">화면 조작 에이전트</text>
+<rect x="48" y="193" width="168" height="110" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="132.0" y="232" text-anchor="middle" class="head">화면 확인</text>
+<text x="132.0" y="266" text-anchor="middle" class="body">스크린샷·DOM</text>
+<path d="M 222 248 L 273 248" fill="none" stroke="#062E61" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="282" y="193" width="168" height="110" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="366.0" y="232" text-anchor="middle" class="head">메뉴 이동</text>
+<text x="366.0" y="266" text-anchor="middle" class="body">기업 등록 화면</text>
+<path d="M 456 248 L 507 248" fill="none" stroke="#062E61" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="516" y="193" width="168" height="110" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="600.0" y="232" text-anchor="middle" class="head">조건 입력</text>
+<text x="600.0" y="266" text-anchor="middle" class="body">검색·필터</text>
+<path d="M 690 248 L 741 248" fill="none" stroke="#062E61" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="750" y="193" width="168" height="110" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="834.0" y="232" text-anchor="middle" class="head">결과 확인</text>
+<text x="834.0" y="266" text-anchor="middle" class="body">표·페이지</text>
+<path d="M 924 248 L 975 248" fill="none" stroke="#062E61" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="984" y="193" width="168" height="110" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="1068.0" y="232" text-anchor="middle" class="head">현황 설명</text>
+<text x="1068.0" y="266" text-anchor="middle" class="body">결과 해석</text>
+<text x="48" y="353" class="small">중간 화면과 동작 결과를 확인하며 다음 행동을 선택합니다.</text>
+<text x="48" y="422" class="head">MYSC의 MCP 도구</text>
+<rect x="48" y="450" width="330" height="112" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="213.0" y="489" text-anchor="middle" class="head">도구 선택</text>
+<text x="213.0" y="523" text-anchor="middle" class="body">현황 조회</text>
+<path d="M 386 506 L 426 506" fill="none" stroke="#062E61" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="435" y="450" width="330" height="112" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="600.0" y="489" text-anchor="middle" class="head">서버 함수</text>
+<text x="600.0" y="523" text-anchor="middle" class="body">권한 확인·집계</text>
+<path d="M 773 506 L 813 506" fill="none" stroke="#062E61" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="822" y="450" width="330" height="112" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="987.0" y="489" text-anchor="middle" class="head">현황 설명</text>
+<text x="987.0" y="523" text-anchor="middle" class="body">구조화된 결과</text>
+<text x="48" y="613" class="small">화면 탐색을 서버 호출로 옮깁니다. MCP에도 도구 선택·응답 처리·서비스 운영 비용이 듭니다.</text>
+</svg>
