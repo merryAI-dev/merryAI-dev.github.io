@@ -1,46 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="660" viewBox="0 0 1120 660" role="img" aria-labelledby="title desc">
-<title id="title">지출결의 요청에서 임시보관 검증까지</title><desc id="desc">미해결 질문은 검토로 돌아갑니다. 불명확한 쓰기는 자동 재전송하지 않습니다.
-완료 범위는 임시보관 검증까지입니다. 상신·결재·지급은 사용자의 후속 절차입니다.</desc>
-<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 Z" fill="#062E61"/></marker></defs>
-<rect width="1120" height="660" fill="#F7FBFC"/>
-<path d="M56 32V620" stroke="#59BDD8" stroke-width="2"/>
-<text x="88" y="70" fill="#031F43" font-size="28" font-family="Pretendard, sans-serif" font-weight="700">지출결의 요청에서 임시보관 검증까지</text>
-<rect x="88" y="112" width="304" height="144" rx="4" fill="white" stroke="#062E61"/>
-<text x="108" y="142" fill="#5F7082" font-size="14" font-family="IBM Plex Mono, monospace">01</text>
-<text x="108" y="177" fill="#062E61" font-size="24" font-weight="700" font-family="Pretendard, sans-serif">요청 해석</text>
-<text x="108" y="211" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">Skill이 사용월·증빙 확인</text>
-<text x="108" y="235" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">기존 CLI를 실행</text>
-<path d="M394 184H418" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="424" y="112" width="304" height="144" rx="4" fill="white" stroke="#062E61"/>
-<text x="444" y="142" fill="#5F7082" font-size="14" font-family="IBM Plex Mono, monospace">02</text>
-<text x="444" y="177" fill="#062E61" font-size="24" font-weight="700" font-family="Pretendard, sans-serif">검토안 생성</text>
-<text x="444" y="211" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">카드 원본·승인 이력 조회</text>
-<text x="444" y="235" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">PDF 건수·합계·행 대조</text>
-<path d="M730 184H754" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="760" y="112" width="304" height="144" rx="4" fill="white" stroke="#062E61"/>
-<text x="780" y="142" fill="#5F7082" font-size="14" font-family="IBM Plex Mono, monospace">03</text>
-<text x="780" y="177" fill="#062E61" font-size="24" font-weight="700" font-family="Pretendard, sans-serif">질문 해소</text>
-<text x="780" y="211" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">목적·모호한 연결 확인</text>
-<text x="780" y="235" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">답변을 검토안에 반영</text>
-<rect x="88" y="320" width="304" height="144" rx="4" fill="white" stroke="#062E61"/>
-<text x="108" y="350" fill="#5F7082" font-size="14" font-family="IBM Plex Mono, monospace">04</text>
-<text x="108" y="385" fill="#062E61" font-size="24" font-weight="700" font-family="Pretendard, sans-serif">저장 전 확인</text>
-<text x="108" y="419" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">검토 화면을 사용자와 확인</text>
-<text x="108" y="443" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">현재 상태로 check</text>
-<path d="M394 392H418" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="424" y="320" width="304" height="144" rx="4" fill="white" stroke="#062E61"/>
-<text x="444" y="350" fill="#5F7082" font-size="14" font-family="IBM Plex Mono, monospace">05</text>
-<text x="444" y="385" fill="#062E61" font-size="24" font-weight="700" font-family="Pretendard, sans-serif">임시보관</text>
-<text x="444" y="419" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">첨부 → 연결키 → ERP</text>
-<text x="444" y="443" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">전자결재 임시보관 저장</text>
-<path d="M730 392H754" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="760" y="320" width="304" height="144" rx="4" fill="white" stroke="#062E61"/>
-<text x="780" y="350" fill="#5F7082" font-size="14" font-family="IBM Plex Mono, monospace">06</text>
-<text x="780" y="385" fill="#062E61" font-size="24" font-weight="700" font-family="Pretendard, sans-serif">재조회·대조</text>
-<text x="780" y="419" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">주요 필드·본문 영수증 연결</text>
-<text x="780" y="443" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">첨부 해시·상태 확인</text>
-<path d="M1064 258 V288 H240 V314" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
-<path d="M88 520H1096" stroke="#FF7A1A" stroke-width="3"/>
-<text x="88" y="560" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">미해결 질문은 검토로 돌아갑니다. 불명확한 쓰기는 자동 재전송하지 않습니다.</text>
-<text x="88" y="590" fill="#172536" font-size="17" font-family="Pretendard, sans-serif">완료 범위는 임시보관 검증까지입니다. 상신·결재·지급은 사용자의 후속 절차입니다.</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1196" viewBox="0 0 640 1196" role="img" aria-labelledby="title desc">
+<title id="title">카드 지출결의: 어디에서 묻고 멈출까</title><desc id="desc">사용자 확인 ≠ 결재 승인. 상신·지급은 이 흐름 밖입니다.</desc>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0L0 6L7 3Z" fill="#062E61"/></marker></defs>
+<rect width="640" height="1196" fill="#F7FBFC"/>
+<text x="32" y="40" font-size="26" font-family="Pretendard,sans-serif" fill="#031F43" font-weight="700">카드 지출결의: 어디에서 묻고 멈출까</text>
+<rect x="110" y="72" width="420" height="94" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="95" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">사용자 → AI / Skill</text>
+<text x="130" y="124" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">사용월·명세서와 업무 요청 전달</text>
+<rect x="110" y="204" width="420" height="94" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="227" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">CLI ↔ 아마란스</text>
+<text x="130" y="256" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">본인 카드·영수증·승인 이력 조회</text>
+<text x="130" y="285" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">명세서와 대조·날짜 규칙 적용</text>
+<rect x="110" y="336" width="420" height="94" rx="4" fill="#E7F6FA" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="359" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">CLI / 판단</text>
+<text x="130" y="388" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">목적·용도·프로젝트가 미확정?</text>
+<rect x="110" y="468" width="420" height="94" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="491" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">AI / Skill ↔ 사용자</text>
+<text x="130" y="520" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">근거를 보여주고 질문</text>
+<text x="130" y="549" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">확인된 답만 새 검토안에 반영</text>
+<rect x="110" y="600" width="420" height="94" rx="4" fill="#E7F6FA" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="623" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">사용자 / Skill 절차</text>
+<text x="130" y="652" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">최종 내역·임시보관 의사 확인</text>
+<text x="130" y="681" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">미확인이라면 여기서 보류</text>
+<rect x="110" y="732" width="420" height="94" rx="4" fill="#E7F6FA" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="755" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">CLI ↔ 아마란스 / 재검사</text>
+<text x="130" y="784" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">현재 거래·프로젝트·마감이 유효?</text>
+<rect x="110" y="864" width="420" height="94" rx="4" fill="#FFF3E8" stroke="#FF7A1A" stroke-width="2"/>
+<text x="130" y="887" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">AI → 사용자</text>
+<text x="130" y="916" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">중복·불일치·권한 문제 보고</text>
+<text x="130" y="945" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">저장 중단 후 다시 검토</text>
+<rect x="110" y="996" width="420" height="94" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="1019" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">CLI → 아마란스</text>
+<text x="130" y="1048" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">검증 통과 시 임시보관</text>
+<text x="130" y="1077" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">이후 저장값 재조회로 확인</text>
+<path d="M320 166V200" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<path d="M320 298V332" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<path d="M320 430V464" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<text x="333" y="454.0" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">있음</text>
+<path d="M110 515H52V383H110" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<text x="44" y="419.0" text-anchor="middle" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">재</text>
+<text x="44" y="439.0" text-anchor="middle" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">검</text>
+<text x="44" y="459.0" text-anchor="middle" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">사</text>
+<path d="M530 383H588V647H530" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<text x="596" y="495.0" text-anchor="middle" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">없</text>
+<text x="596" y="515.0" text-anchor="middle" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">음</text>
+<path d="M320 694V728" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<text x="333" y="718.0" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">확인함</text>
+<path d="M320 826V860" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<text x="333" y="850.0" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">아니오</text>
+<path d="M530 779H588V1043H530" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<text x="596" y="901.0" text-anchor="middle" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">예</text>
+<text x="32" y="1174" font-family="Pretendard,sans-serif" font-size="18" fill="#5F7082">사용자 확인 ≠ 결재 승인. 상신·지급은 이 흐름 밖입니다.</text></svg>

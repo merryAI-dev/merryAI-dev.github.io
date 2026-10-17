@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1196" viewBox="0 0 640 1196" role="img" aria-labelledby="title desc">
+<title id="title">카드 결의: 중단된 작업을 재개할 때</title><desc id="desc">기록의 ‘시도’는 ‘완료’가 아닙니다. 자동 상신은 없습니다.</desc>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0L0 6L7 3Z" fill="#062E61"/></marker></defs>
+<rect width="640" height="1196" fill="#F7FBFC"/>
+<text x="32" y="40" font-size="26" font-family="Pretendard,sans-serif" fill="#031F43" font-weight="700">카드 결의: 중단된 작업을 재개할 때</text>
+<rect x="110" y="72" width="420" height="94" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="95" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">사용자 → AI / Skill</text>
+<text x="130" y="124" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">이전 작업을 이어서 요청</text>
+<rect x="110" y="204" width="420" height="94" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="227" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">CLI / 작업 기록 + 아마란스 조회</text>
+<text x="130" y="256" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">같은 사용자·같은 작업인지 확인</text>
+<text x="130" y="285" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">이미 연결된 문서가 있는지 조회</text>
+<rect x="110" y="336" width="420" height="94" rx="4" fill="#E7F6FA" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="359" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">CLI / 이미 문서가 있거나 저장 시도 후</text>
+<text x="130" y="388" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">기존 문서 재조회 경로로 이동</text>
+<text x="130" y="417" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">새 문서를 다시 만들지 않음</text>
+<rect x="110" y="468" width="420" height="94" rx="4" fill="#E7F6FA" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="491" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">CLI / 아직 문서가 없을 때</text>
+<text x="130" y="520" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">완료가 확인된 저장 단계인가?</text>
+<rect x="110" y="600" width="420" height="94" rx="4" fill="#FFF3E8" stroke="#FF7A1A" stroke-width="2"/>
+<text x="130" y="623" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">AI → 사용자 / 결과 불명확</text>
+<text x="130" y="652" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">자동 재전송 중단</text>
+<text x="130" y="681" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">그룹웨어 상태 확인 필요 보고</text>
+<rect x="110" y="732" width="420" height="94" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="755" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">CLI → 아마란스 / 완료 단계에서</text>
+<text x="130" y="784" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">필요한 현재 조건을 재확인</text>
+<text x="130" y="813" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">남은 임시보관 단계 수행</text>
+<rect x="110" y="864" width="420" height="94" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="887" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">CLI ↔ 아마란스</text>
+<text x="130" y="916" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">저장 필드·영수증·첨부·상태 대조</text>
+<rect x="110" y="996" width="420" height="94" rx="4" fill="#E7F6FA" stroke="#062E61" stroke-width="2"/>
+<text x="130" y="1019" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">AI → 사용자</text>
+<text x="130" y="1048" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">일치: 임시보관 검증 완료</text>
+<text x="130" y="1077" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">불일치·상태 변경: 중단·차이 보고</text>
+<path d="M320 166V200" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<path d="M320 298V332" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<path d="M530 383H588V911H530" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<text x="596" y="617.0" text-anchor="middle" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">해</text>
+<text x="596" y="637.0" text-anchor="middle" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">당</text>
+<text x="596" y="657.0" text-anchor="middle" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">함</text>
+<path d="M320 430V464" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<text x="333" y="454.0" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">해당 없음</text>
+<path d="M320 562V596" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<text x="333" y="586.0" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">아니오</text>
+<path d="M110 515H52V779H110" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<text x="44" y="637.0" text-anchor="middle" font-size="17" fill="#062E61" font-family="Pretendard,sans-serif">예</text>
+<path d="M320 826V860" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<path d="M320 958V992" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#a)"/>
+<text x="32" y="1174" font-family="Pretendard,sans-serif" font-size="18" fill="#5F7082">기록의 ‘시도’는 ‘완료’가 아닙니다. 자동 상신은 없습니다.</text></svg>
