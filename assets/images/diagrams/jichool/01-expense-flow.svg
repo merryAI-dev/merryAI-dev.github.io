@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="640" height="1196" viewBox="0 0 640 1196" role="img" aria-labelledby="title desc">
-<title id="title">카드 지출결의: 어디에서 묻고 멈출까</title><desc id="desc">사용자 확인 ≠ 결재 승인. 상신·지급은 이 흐름 밖입니다.</desc>
+<title id="title">반복은 가져오고, 차이는 묻는다</title><desc id="desc">본인 이력 → 반복 초안 → 이번 차이 질문 → 규칙 검사 → 임시보관·재조회. 상신·지급은 제외합니다.</desc>
 <defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0 0L0 6L7 3Z" fill="#062E61"/></marker></defs>
 <rect width="640" height="1196" fill="#F7FBFC"/>
-<text x="32" y="40" font-size="26" font-family="Pretendard,sans-serif" fill="#031F43" font-weight="700">카드 지출결의: 어디에서 묻고 멈출까</text>
+<text x="32" y="40" font-size="26" font-family="Pretendard,sans-serif" fill="#031F43" font-weight="700">반복은 가져오고, 차이는 묻는다</text>
 <rect x="110" y="72" width="420" height="94" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
 <text x="130" y="95" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">사용자 → AI / Skill</text>
-<text x="130" y="124" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">사용월·명세서와 업무 요청 전달</text>
+<text x="130" y="124" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">이번 사용월·명세서와 요청 전달</text>
 <rect x="110" y="204" width="420" height="94" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
 <text x="130" y="227" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">CLI ↔ 아마란스</text>
-<text x="130" y="256" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">본인 카드·영수증·승인 이력 조회</text>
-<text x="130" y="285" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">명세서와 대조·날짜 규칙 적용</text>
+<text x="130" y="256" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">본인 승인 이력 → 초안 후보</text>
+<text x="130" y="285" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">적요·용도·프로젝트의 반복 참고</text>
 <rect x="110" y="336" width="420" height="94" rx="4" fill="#E7F6FA" stroke="#062E61" stroke-width="2"/>
 <text x="130" y="359" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">CLI / 판단</text>
-<text x="130" y="388" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">목적·용도·프로젝트가 미확정?</text>
+<text x="130" y="388" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">이번 목적·이력 근거가 미확정?</text>
 <rect x="110" y="468" width="420" height="94" rx="4" fill="white" stroke="#062E61" stroke-width="2"/>
 <text x="130" y="491" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">AI / Skill ↔ 사용자</text>
-<text x="130" y="520" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">근거를 보여주고 질문</text>
+<text x="130" y="520" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">이번 차이·이력 충돌을 질문</text>
 <text x="130" y="549" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">확인된 답만 새 검토안에 반영</text>
 <rect x="110" y="600" width="420" height="94" rx="4" fill="#E7F6FA" stroke="#062E61" stroke-width="2"/>
 <text x="130" y="623" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">사용자 / Skill 절차</text>
@@ -23,7 +23,7 @@
 <text x="130" y="681" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">미확인이라면 여기서 보류</text>
 <rect x="110" y="732" width="420" height="94" rx="4" fill="#E7F6FA" stroke="#062E61" stroke-width="2"/>
 <text x="130" y="755" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">CLI ↔ 아마란스 / 재검사</text>
-<text x="130" y="784" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">현재 거래·프로젝트·마감이 유효?</text>
+<text x="130" y="784" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">원본·날짜·현재 조건이 유효?</text>
 <rect x="110" y="864" width="420" height="94" rx="4" fill="#FFF3E8" stroke="#FF7A1A" stroke-width="2"/>
 <text x="130" y="887" font-family="Pretendard,sans-serif" font-size="17" fill="#5F7082">AI → 사용자</text>
 <text x="130" y="916" font-family="Pretendard,sans-serif" font-size="24" fill="#172536">중복·불일치·권한 문제 보고</text>
