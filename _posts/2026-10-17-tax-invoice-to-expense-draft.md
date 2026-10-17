@@ -40,6 +40,11 @@ card_image: /assets/images/diagrams/jichool/02-tax-loop.svg
 | 이미 카드 결제했다는 설명 | 결제 후보·결제일·비고·결제 증빙 확인 | 같은 금액만으로 같은 거래임을 확정 |
 | 임시보관 요청 | 검토한 값으로 초안 저장 후 재조회 | 상신·결재·실제 지급 완료 |
 
+
+<a href="/assets/images/screenshots/jichool/03-tax-detail-light-masked.png" aria-label="세금계산서 지출결의 상세: 공급가액·부가세·합계액과 지급 및 계좌 정보 항목 — 원본 크기로 확대"><img src="/assets/images/screenshots/jichool/03-tax-detail-light-masked.png" alt="세금계산서 지출결의 상세: 공급가액·부가세·합계액과 지급 및 계좌 정보 항목" width="1512" height="743" loading="lazy" style="height: auto;"></a>
+
+*세금계산서 상세에는 공급가액·부가세·합계액이 별도 열로 있고, 지급요청일·계좌·프로젝트는 아래에 배치됩니다. 민감정보를 가린 실제 화면입니다. 기존 결재완료 문서의 UI를 설명하기 위한 참고 화면이며, AI가 상신에 성공했다는 증거는 아닙니다. [이미지 확대해서 보기](/assets/images/screenshots/jichool/03-tax-detail-light-masked.png).*
+
 이 사례에서 세금계산서의 합계와 카드 금액이 같더라도 두 문서가 같은 역할을 하는 것은 아닙니다. 카드 거래는 결제 관계를 확인하는 자료이고, 세금계산서는 공급가액과 세액 등 증빙 항목의 근거입니다. 도구는 현재 조직의 절차에 맞춰 초안을 준비하며, 두 증빙의 회계상 관계를 독자적으로 판단하지 않습니다.
 
 ## 첫 번째 판단: 안 읽은 메일이 곧 미처리 증빙은 아닙니다
