@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 434" role="img" aria-labelledby="title desc"><title id="title">결산 근거 정규화의 현재와 목표</title><desc id="desc">현재는 BFF와 JVM이 각각 정규화한다. 목표 구조에서는 둘 다 같은 WASM을 호출한다.</desc>
+<rect width="720" height="434" fill="#F7FBFC"/><path d="M26 0v434" stroke="#59BDD8" stroke-width="2"/><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#062E61"/></marker></defs>
+<g font-family="Pretendard, Apple SD Gothic Neo, Malgun Gothic, sans-serif">
+<text x="48" y="39" font-size="14" fill="#062E61" font-weight="700">BUILDING THE LEDGER / 05</text>
+<text x="48" y="76" font-size="28" fill="#031F43" font-weight="700">결산 근거 정규화의 현재와 목표</text>
+<text x="48" y="115" font-size="19" fill="#062E61" font-weight="700">현재 운영</text>
+<rect x="48" y="132" width="278" height="64" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="64" y="158" font-size="19" fill="#172536" font-weight="700">Express BFF</text>
+<text x="64" y="182" font-size="18" fill="#172536" font-weight="400">근거를 정규화해 해시 기록</text>
+<path d="M332 164L386 164" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="393" y="132" width="279" height="64" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="409" y="158" font-size="19" fill="#172536" font-weight="700">Spring Boot JVM</text>
+<text x="409" y="182" font-size="18" fill="#172536" font-weight="400">근거를 다시 정규화해 비교</text>
+<text x="48" y="239" font-size="19" fill="#062E61" font-weight="700">목표 구조 · 운영 전환 계획</text>
+<rect x="48" y="256" width="232" height="51" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="65" y="289" font-size="19" fill="#172536" font-weight="700">Express BFF</text>
+<rect x="440" y="256" width="232" height="51" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="457" y="289" font-size="19" fill="#172536" font-weight="700">Spring Boot JVM</text>
+<path d="M164 312L278 348" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M556 312L442 348" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="151" y="350" width="418" height="52" rx="4" fill="#E8F6FA" stroke="#062E61"/>
+<text x="171" y="382" font-size="21" fill="#172536" font-weight="700">Rust 코어에서 빌드한 공용 WASM</text>
+</g></svg>

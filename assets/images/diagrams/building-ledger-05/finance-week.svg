@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 434" role="img" aria-labelledby="title desc"><title id="title">같은 날짜를 같은 재무 주차로</title><desc id="desc">11월 1일과 2일의 재무 주차와 이 규칙을 사용하는 업무를 보여준다.</desc>
+<rect width="720" height="434" fill="#F7FBFC"/><path d="M26 0v434" stroke="#59BDD8" stroke-width="2"/><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#062E61"/></marker></defs>
+<g font-family="Pretendard, Apple SD Gothic Neo, Malgun Gothic, sans-serif">
+<text x="48" y="39" font-size="14" fill="#062E61" font-weight="700">BUILDING THE LEDGER / 05</text>
+<text x="48" y="76" font-size="28" fill="#031F43" font-weight="700">같은 날짜를 같은 재무 주차로</text>
+<rect x="48" y="119" width="219" height="61" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="66" y="157" font-size="21" fill="#172536" font-weight="400">2026-11-01 일</text>
+<path d="M272 149L308 149" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="315" y="119" width="357" height="61" rx="4" fill="#E8F6FA" stroke="#062E61"/>
+<text x="333" y="157" font-size="21" fill="#172536" font-weight="700">11월 1주차</text>
+<text x="496" y="157" font-size="19" fill="#172536" font-weight="400">11/01 하루</text>
+<rect x="48" y="203" width="219" height="61" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="66" y="241" font-size="21" fill="#172536" font-weight="400">2026-11-02 월</text>
+<path d="M272 233L308 233" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="315" y="203" width="357" height="61" rx="4" fill="#E8F6FA" stroke="#062E61"/>
+<text x="333" y="241" font-size="21" fill="#172536" font-weight="700">11월 2주차</text>
+<text x="496" y="241" font-size="19" fill="#172536" font-weight="400">11/02–11/08</text>
+<rect x="48" y="307" width="624" height="85" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="66" y="339" font-size="20" fill="#062E61" font-weight="700">같은 주차로 조회하는 업무</text>
+<text x="66" y="372" font-size="19" fill="#172536" font-weight="400">주정산 승인 상태  ·  현금흐름 비교 기준  ·  제출 기한</text>
+</g></svg>
