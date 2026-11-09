@@ -1,6 +1,6 @@
 ---
-title: "두 서버가 같은 계산을 쓰는 법"
-description: "Node와 JVM에 흩어진 계산 규칙을 Rust 코어로 추출하고, 기존 서버에서 공유할 수 있는 구조를 검증한 과정"
+title: "서버는 둘, 계산 코드는 하나"
+description: "Node와 JVM이 각각 구현하던 계산을 Rust로 모으고, 같은 WASM을 실행하는 구조를 실험했습니다."
 author: MYSC AXR팀
 date: 2026-11-09
 series: Building the Ledger
