@@ -1,24 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 495" role="img" aria-labelledby="title desc"><title id="title">정산 백엔드에서 Rust가 들어갈 위치</title><desc id="desc">화면, Express, Spring Boot, Firestore의 기존 요청 흐름과 두 서버가 공용 WASM을 호출하는 목표 구조를 보여줍니다.</desc>
-<rect width="720" height="495" fill="#F7FBFC"/><path d="M24 0v495" stroke="#59BDD8" stroke-width="2"/>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#062E61"/></marker></defs>
-<g font-family="Pretendard, Apple SD Gothic Neo, Malgun Gothic, sans-serif">
-<text x="48" y="37" font-size="14" font-weight="700" fill="#062E61">BUILDING THE LEDGER / 05</text>
-<text x="48" y="74" font-size="28" font-weight="700" fill="#062E61">정산 백엔드에서 Rust가 들어갈 위치</text>
-<rect x="213" y="106" width="294" height="49" rx="4" fill="#fff" stroke="#062E61"/>
-<text x="234" y="138" font-size="19" font-weight="700" fill="#062E61">사용자 화면</text>
-<path d="M360 161L360 188" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="213" y="192" width="294" height="52" rx="4" fill="#fff" stroke="#062E61"/>
-<text x="234" y="224" font-size="19" font-weight="700" fill="#062E61">Express BFF · 요청 구성</text>
-<path d="M360 250L360 280" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="213" y="284" width="294" height="52" rx="4" fill="#fff" stroke="#062E61"/>
-<text x="234" y="316" font-size="19" font-weight="700" fill="#062E61">Spring Boot · 명령과 검증</text>
-<path d="M360 342L360 372" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="213" y="376" width="294" height="50" rx="4" fill="#fff" stroke="#062E61"/>
-<text x="234" y="407" font-size="19" font-weight="700" fill="#062E61">Firestore · 정산 상태 저장</text>
-<rect x="522" y="108" width="150" height="67" rx="4" fill="#E8F6FA" stroke="#062E61"/>
-<text x="536" y="134" font-size="17" font-weight="700" fill="#062E61">Rust 코어</text>
-<text x="536" y="157" font-size="17" font-weight="400" fill="#062E61">공용 WASM</text>
-<path d="M507 206L551 179" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
-<path d="M507 295L610 179" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
-<text x="48" y="466" font-size="17" font-weight="400" fill="#062E61">실선  기존 요청 흐름     ·     점선  계획 중인 프로세스 내부 호출</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 565" role="img" aria-labelledby="title desc">
+<title id="title">정산 요청의 현재 구조와 Rust·WASM 목표 구조</title>
+<desc id="desc">왼쪽에서는 BFF와 JVM이 서로 다른 규칙 구현을 호출합니다. 오른쪽에서는 요청과 저장 흐름을 유지하고 두 서버가 동일한 WASM 산출물을 각 프로세스에서 호출합니다.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#062E61"/></marker></defs>
+<rect width="760" height="565" fill="#F7FBFC"/>
+<path d="M20 0V565M379 83V524" fill="none" stroke="#59BDD8" stroke-width="2"/>
+<g font-family="Pretendard, Apple SD Gothic Neo, Malgun Gothic, sans-serif" fill="#062E61">
+<text x="40" y="37" font-size="14" font-weight="700">BUILDING THE LEDGER / 05</text>
+<text x="40" y="70" font-size="27" font-weight="700">정산 요청 흐름과 계산 규칙의 경계</text>
+<text x="40" y="111" font-size="22" font-weight="700">현재 · 규칙 구현 두 곳</text>
+<rect x="40" y="139" width="170" height="62" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="51" y="164" font-size="17" font-weight="700">사용자 화면</text>
+<text x="51" y="186" font-size="15" font-weight="400">결산 요청</text>
+<rect x="40" y="216" width="170" height="62" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="51" y="241" font-size="17" font-weight="700">Express BFF</text>
+<text x="51" y="263" font-size="15" font-weight="400">요청 구성 · 근거 기록</text>
+<rect x="40" y="312" width="170" height="62" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="51" y="337" font-size="17" font-weight="700">Spring Boot</text>
+<text x="51" y="359" font-size="15" font-weight="400">명령 처리 · 근거 검증</text>
+<rect x="40" y="408" width="170" height="62" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="51" y="433" font-size="17" font-weight="700">Firestore</text>
+<text x="51" y="455" font-size="15" font-weight="400">정산 상태 저장</text>
+<path d="M125 203V212" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M125 280V308" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M125 376V404" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="399" y="111" font-size="22" font-weight="700">목표 · 같은 WASM 산출물</text>
+<rect x="399" y="139" width="170" height="62" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="410" y="164" font-size="17" font-weight="700">사용자 화면</text>
+<text x="410" y="186" font-size="15" font-weight="400">결산 요청</text>
+<rect x="399" y="216" width="170" height="62" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="410" y="241" font-size="17" font-weight="700">Express BFF</text>
+<text x="410" y="263" font-size="15" font-weight="400">요청 구성 · 근거 기록</text>
+<rect x="399" y="312" width="170" height="62" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="410" y="337" font-size="17" font-weight="700">Spring Boot</text>
+<text x="410" y="359" font-size="15" font-weight="400">명령 처리 · 근거 검증</text>
+<rect x="399" y="408" width="170" height="62" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="410" y="433" font-size="17" font-weight="700">Firestore</text>
+<text x="410" y="455" font-size="15" font-weight="400">정산 상태 저장</text>
+<path d="M484 203V212" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M484 280V308" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M484 376V404" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="248" y="225" width="112" height="44" rx="4" fill="#E8F6FA" stroke="#062E61"/>
+<text x="259" y="253" font-size="17" font-weight="700">JS 구현</text>
+<rect x="248" y="321" width="112" height="44" rx="4" fill="#E8F6FA" stroke="#062E61"/>
+<text x="259" y="349" font-size="17" font-weight="700">Java 구현</text>
+<path d="M214 247H244" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M214 343H244" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="604" y="237" width="126" height="117" rx="4" fill="#E8F6FA" stroke="#062E61"/>
+<text x="614" y="263" font-size="16" font-weight="700">Rust 코어</text>
+<text x="614" y="289" font-size="17" font-weight="700">같은 WASM</text>
+<text x="614" y="316" font-size="15" font-weight="400">각 호스트에</text>
+<text x="614" y="338" font-size="15" font-weight="400">파일 포함</text>
+<path d="M573 247H599" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<path d="M573 343H599" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="40" y="509" font-size="16" font-weight="400">실선  기존 요청 또는 계산 호출</text>
+<text x="399" y="509" font-size="16" font-weight="400">점선  각 프로세스 안에서 실행할 계획</text>
+<text x="40" y="543" font-size="16" font-weight="400">결산 요청을 예로 든 비교 · 목표 그림은 배포·운영 전환 계획을 나타냅니다.</text>
 </g></svg>

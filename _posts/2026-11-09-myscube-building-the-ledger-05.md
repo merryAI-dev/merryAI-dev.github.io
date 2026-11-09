@@ -1,5 +1,5 @@
 ---
-title: "같은 회계 규칙을 두 번 쓰지 않기"
+title: "Node와 JVM의 중복 계산을 Rust로 옮기기"
 description: "Node와 JVM에 흩어진 계산 규칙을 Rust 코어로 추출하고, 기존 서버에서 공유할 수 있는 구조를 검증한 과정"
 author: MYSC AXR팀
 date: 2026-11-09
@@ -66,9 +66,9 @@ MYSCube에는 이미 시트의 계산 규칙을 검증하는 Rust 코어가 있�
 
 트랜잭션 안에서 어떤 문서를 읽고 갱신할지는 호스트의 일입니다. 코어는 호스트가 넘긴 입력을 계산하고 결과를 돌려줍니다. 그래서 Rust 모듈이 들어온 뒤에도 Express와 Spring Boot의 요청 처리 흐름은 그대로 읽을 수 있습니다. 공용 WASM으로 연결할 때 바뀌는 부분은 그 흐름 안에서 규칙을 호출하는 지점입니다.
 
-![화면에서 Express와 Spring Boot를 거쳐 Firestore로 이어지는 정산 흐름과 두 서버의 공용 WASM 호출 계획](/assets/images/diagrams/building-ledger-05/refactor-system-overview.svg)
+![현재 구조와 목표 구조를 나란히 비교. 현재 BFF와 JVM이 각각 JS와 Java 규칙을 호출하고, 목표 구조에서는 같은 WASM 파일을 각 프로세스에서 실행](/assets/images/diagrams/building-ledger-05/refactor-system-overview.svg)
 
-*그림 2. 로컬 정산 및 JVM→Rust 회로도를 바탕으로 재구성한 전체 흐름. 점선은 각 서버가 자기 프로세스에서 공용 WASM을 호출하는 목표입니다.*
+*그림 2. 주·월결산 루프와 JVM→Rust 회로도를 바탕으로 비교한 정산 백엔드 구조. 요청과 저장 흐름은 양쪽에 그대로 보이고, 계산 규칙을 호출하는 부분이 달라집니다.*
 
 ## 같은 Rust 함수를 두 런타임에서 호출하는 방법
 
@@ -93,10 +93,6 @@ const result = new Int32Array(exports.memory.buffer, outOffset, 11);
 결과를 읽을 때마다 현재 `memory.buffer`로 뷰를 다시 만듭니다. WASM 메모리가 늘어나면 이전 버퍼를 계속 쓸 수 없기 때문이에요. 이 시범의 입출력은 고정 크기 정수로 끝납니다. 가변 길이 JSON은 호스트와 모듈이 UTF-8 바이트의 포인터와 길이를 주고받고, 언제 메모리를 해제할지 정하는 별도 계약이 필요합니다. 계획에는 그 경계를 두되, 현재 주차 로더가 결산 해시까지 실행한다고 보지 않습니다.
 
 배포 쪽에도 조건이 있습니다. 두 호스트가 서로 다른 시점에 각자 빌드한 파일을 읽으면 어떤 규칙 버전이 실행됐는지 추적하기 어렵습니다. 그래서 계획에는 툴체인을 고정하고 CI에서 산출물의 바이트를 확인한 뒤, 같은 파일을 Node 번들과 JVM 리소스에 넣는 단계가 들어 있습니다.
-
-![결산 근거 해시의 현재 흐름과 계획 중인 공용 WASM 구조](/assets/images/diagrams/building-ledger-05/close-hash-wasm.svg)
-
-*그림 3. 두 호스트가 각각 규칙을 실행하는 현재 구조와 공용 WASM을 호출하는 목표 구조. 결산 근거 정규화를 예로 들었습니다.*
 
 ## 포팅한 코드가 같은 답을 낸다는 걸 어떻게 확인했나요?
 
