@@ -13,23 +13,18 @@ tags:
   - 월결산
 reading_time: 14
 published: true
-card_image: /assets/images/diagrams/building-ledger-05/close-hash-wasm.svg
+card_image: /assets/images/diagrams/building-ledger-05/deployment-options.svg
 ---
 
-계산식을 Java 한곳에 모았는데도, TypeScript 쪽에는 같은 규칙이 남았습니다. JVM 내부에서는 중복을 줄였지만 Node에서도 그 계산이 필요했기 때문입니다. **코드를 한 파일로 모으는 것과, 두 런타임이 같은 코드를 실행하는 건 다른 문제였습니다.**
+**서버는 둘인데, 같은 계산도 두 번 구현해야 할까요?**
 
-Java를 원본으로 두면 JVM 안의 호출은 단순합니다. Node도 같은 결과를 얻으려면 JVM에 계산을 요청하는 API를 두거나, Java에서 미리 계산한 결과를 받아야 합니다. 반대로 TypeScript에 모으면 Node에서는 함수 하나를 호출하면 됩니다. JVM에서 같은 규칙을 쓰려면 Node에 요청하거나 별도의 JS 실행 환경을 넣어야 해요. 두 경우 모두 각자의 프로세스에서 계산하던 일이 서버 간 호출이나 새 런타임 관리로 바뀝니다. 날짜처럼 입력을 미리 열거할 수 있는 규칙은 생성된 표를 공유하는 방법도 있지만, 요청마다 들어오는 JSON에는 같은 방법을 쓰기 어렵습니다.
+MYSCube에서는 Node와 JVM이 같은 입력을 받아 같은 답을 내야 할 때가 있습니다. 계산식 하나를 바꿀 때마다 두 구현을 찾아 고치고, 서로 다른 배포에서 답이 어긋나지 않는지 확인해야 했어요.
 
-저희가 선택한 방향은 **기존 Rust 계산 코어에서 WASM을 빌드하고, 두 서버가 같은 파일을 각자의 프로세스 안에서 호출하는 구조**입니다. Node는 내장 WebAssembly로 읽고, JVM은 Java용 WASM 런타임을 통해 읽는 설계예요.
+한쪽 서버에 규칙을 모으고 다른 쪽에서 호출하는 방법부터 살펴봤습니다. Java에 두면 Node가 JVM에 계산을 요청하고, TypeScript에 두면 반대로 JVM이 Node에 요청합니다. 날짜처럼 입력을 미리 열거할 수 있다면 생성한 표를 배포하는 방법도 있습니다. 요청마다 다른 JSON을 받는 규칙까지 공유하려면 실행할 코드가 필요했습니다.
 
-```text
-기존     Node 번들 ── TypeScript 계산
-         JVM JAR  ── Java 계산
+![Java에 모을 때는 Node에서 JVM으로, TypeScript에 모을 때는 JVM에서 Node로 요청합니다. Rust와 WASM을 쓰는 목표 구조에서는 같은 WASM 파일을 양쪽 배포에 포함합니다.](/assets/images/diagrams/building-ledger-05/deployment-options.svg)
 
-목표     Rust 코어 ── 빌드 ── rules.wasm
-                              ├─ Node 번들에서 로드
-                              └─ JVM JAR 리소스에서 로드
-```
+*그림 1. 규칙을 한 서버에 두고 호출하는 두 가지 방식과, 같은 WASM을 각 서버에 배포하는 방식.*
 
 이 구조에서 서비스는 여전히 각각 배포합니다. 달라지는 건 두 배포에 **같은 버전의 계산 모듈**이 들어간다는 점입니다. 규칙을 고치면 Rust에서 WASM을 한 번 만들고, Node 번들과 JVM JAR에 같은 산출물을 포함합니다. 대신 호스트마다 입력을 넘기고 결과를 읽는 코드가 필요하고, WASM과 호스트가 같은 ABI 버전을 쓰는지도 확인해야 합니다.
 
@@ -71,6 +66,10 @@ MYSCube에는 이미 시트의 계산 규칙을 검증하는 Rust 코어가 있�
 
 트랜잭션 안에서 어떤 문서를 읽고 갱신할지는 호스트의 일입니다. 코어는 호스트가 넘긴 입력을 계산하고 결과를 돌려줍니다. 그래서 Rust 모듈이 들어온 뒤에도 Express와 Spring Boot의 요청 처리 흐름은 그대로 읽을 수 있습니다. 공용 WASM으로 연결할 때 바뀌는 부분은 그 흐름 안에서 규칙을 호출하는 지점입니다.
 
+![화면에서 Express와 Spring Boot를 거쳐 Firestore로 이어지는 정산 흐름과 두 서버의 공용 WASM 호출 계획](/assets/images/diagrams/building-ledger-05/refactor-system-overview.svg)
+
+*그림 2. 로컬 정산 및 JVM→Rust 회로도를 바탕으로 재구성한 전체 흐름. 점선은 각 서버가 자기 프로세스에서 공용 WASM을 호출하는 목표입니다.*
+
 ## 같은 Rust 함수를 두 런타임에서 호출하는 방법
 
 공유하는 방법도 몇 가지 살펴봤습니다. **날짜만 받는 규칙**이라면 Rust로 주차표를 생성해서 JVM이 읽게 할 수 있어요. 재무 담당자가 바뀐 날짜를 표에서 바로 확인할 수 있고 Java 런타임 의존성도 생기지 않습니다. 대신 표의 지원 범위를 관리해야 하고, 입력 구조가 다양한 결산 JSON이나 수식 검사에는 같은 방법을 쓰기 어렵습니다.
@@ -97,7 +96,7 @@ const result = new Int32Array(exports.memory.buffer, outOffset, 11);
 
 ![결산 근거 해시의 현재 흐름과 계획 중인 공용 WASM 구조](/assets/images/diagrams/building-ledger-05/close-hash-wasm.svg)
 
-*그림 1. 두 호스트가 각각 규칙을 실행하는 현재 구조와 공용 WASM을 호출하는 목표 구조. 결산 근거 정규화를 예로 들었습니다.*
+*그림 3. 두 호스트가 각각 규칙을 실행하는 현재 구조와 공용 WASM을 호출하는 목표 구조. 결산 근거 정규화를 예로 들었습니다.*
 
 ## 포팅한 코드가 같은 답을 낸다는 걸 어떻게 확인했나요?
 

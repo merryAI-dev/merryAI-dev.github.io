@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 495" role="img" aria-labelledby="title desc"><title id="title">정산 백엔드에서 Rust가 들어갈 위치</title><desc id="desc">화면, Express, Spring Boot, Firestore의 기존 요청 흐름과 두 서버가 공용 WASM을 호출하는 목표 구조를 보여줍니다.</desc>
+<rect width="720" height="495" fill="#F7FBFC"/><path d="M24 0v495" stroke="#59BDD8" stroke-width="2"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#062E61"/></marker></defs>
+<g font-family="Pretendard, Apple SD Gothic Neo, Malgun Gothic, sans-serif">
+<text x="48" y="37" font-size="14" font-weight="700" fill="#062E61">BUILDING THE LEDGER / 05</text>
+<text x="48" y="74" font-size="28" font-weight="700" fill="#062E61">정산 백엔드에서 Rust가 들어갈 위치</text>
+<rect x="213" y="106" width="294" height="49" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="234" y="138" font-size="19" font-weight="700" fill="#062E61">사용자 화면</text>
+<path d="M360 161L360 188" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="213" y="192" width="294" height="52" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="234" y="224" font-size="19" font-weight="700" fill="#062E61">Express BFF · 요청 구성</text>
+<path d="M360 250L360 280" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="213" y="284" width="294" height="52" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="234" y="316" font-size="19" font-weight="700" fill="#062E61">Spring Boot · 명령과 검증</text>
+<path d="M360 342L360 372" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="213" y="376" width="294" height="50" rx="4" fill="#fff" stroke="#062E61"/>
+<text x="234" y="407" font-size="19" font-weight="700" fill="#062E61">Firestore · 정산 상태 저장</text>
+<rect x="522" y="108" width="150" height="67" rx="4" fill="#E8F6FA" stroke="#062E61"/>
+<text x="536" y="134" font-size="17" font-weight="700" fill="#062E61">Rust 코어</text>
+<text x="536" y="157" font-size="17" font-weight="400" fill="#062E61">공용 WASM</text>
+<path d="M507 206L551 179" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<path d="M507 295L610 179" fill="none" stroke="#062E61" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<text x="48" y="466" font-size="17" font-weight="400" fill="#062E61">실선  기존 요청 흐름     ·     점선  계획 중인 프로세스 내부 호출</text>
+</g></svg>
