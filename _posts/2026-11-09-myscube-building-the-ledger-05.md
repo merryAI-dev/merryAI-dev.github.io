@@ -1,5 +1,5 @@
 ---
-title: "Node와 JVM의 중복 계산을 Rust로 옮기기"
+title: "두 서버가 같은 계산을 쓰는 법"
 description: "Node와 JVM에 흩어진 계산 규칙을 Rust 코어로 추출하고, 기존 서버에서 공유할 수 있는 구조를 검증한 과정"
 author: MYSC AXR팀
 date: 2026-11-09
